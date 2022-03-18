@@ -48,14 +48,28 @@ class TFIDF_proxy(object):
 
         return text
 
-    def rank(self, docs, query, language):
+    def get_doc_vectors(self, docs, language):
         doc_vectors = self.vectorizer.fit_transform([self.preprocess(doc, language) for doc in docs])
+        return doc_vectors
+    
+    def get_query_vector(self, query, language):
         query_vector = self.vectorizer.transform([self.preprocess(query, language)]).todense()
+        return query_vector
+
+    def rank(self, docs, query, language):
+        doc_vectors = self.get_doc_vectors(docs, language)
+        query_vector = self.get_query_vector(query, language)
 
         doc_scores = np.asarray(doc_vectors @ query_vector.T).squeeze()
         doc_indices_rank = doc_scores.argsort()[::-1].tolist()
 
         return [docs[index] for index in doc_indices_rank]
+    
+    def rank_vector(self, doc_vectors, query_vector):
+        doc_scores = np.asarray(doc_vectors @ query_vector.T).squeeze()
+        doc_indices_rank = doc_scores.argsort()[::-1].tolist()
+
+        return doc_indices_rank
 
 class QAProxy(object):
     def __init__(self):
@@ -129,17 +143,53 @@ class QAProxy(object):
 
         return output["answer"]
 
-
 class Broker(object):
     def __init__(self):
         self.qa_proxy = QAProxy()
         self.tf_idf_proxy = TFIDF_proxy()
 
+        # language documents
+        self.corpus = dict()
+        self.set_corpus()
+    
+    def set_corpus(self):
+        print("[+] Loding [EN] corpus...")
+        self.corpus["EN"] = dict()
+        docs, vectors = self.get_corpus("static/data/EnglishDocuments.json", "EN")
+        self.corpus["EN"]["docs"] = docs
+        self.corpus["EN"]["vectors"] = vectors
+
+        print("[+] Loding [MS] corpus...")
+        self.corpus["MS"] = dict()
+        docs, vectors = self.get_corpus("static/data/MalayDocuments.json", "MS")
+        self.corpus["MS"]["docs"] = docs
+        self.corpus["MS"]["vectors"] = vectors
+
+        print("[+] Loding [TH] corpus...")
+        self.corpus["TH"] = dict()
+        docs, vectors = self.get_corpus("static/data/ThaiDocuments.json", "TH")
+        self.corpus["TH"]["docs"] = docs
+        self.corpus["TH"]["vectors"] = vectors
+
+        print("[*] Corpus loaded successfully")
+    
+    def get_corpus(self, file_path, language):
+        with open(file_path, "r", encoding="utf-8") as f:
+            docs = json.loads(f.readline())
+            processed_docs = ["\n\n".join(docs[doc_id]["passages"]) for doc_id in docs]
+            doc_vectors = self.tf_idf_proxy.get_doc_vectors(processed_docs, language)
+        return processed_docs, doc_vectors
+
     def document_retrieval(self, language, context, question, result):
-        pass
+        if context == "":
+            docs = self.corpus[language]["docs"]
+            doc = self.tf_idf_proxy.rank(docs, question, language)[0]
+            result["document"] = [doc]
+        else:
+            result["document"] = [context]
 
     def passage_retrieval(self, language, context, question, result):
-        context_segments = context.split('\n\n')
+        context_segments = result["document"][0].split('\n\n')
         ranked_result = self.tf_idf_proxy.rank(context_segments, question, language)
         result["passages"] = [ranked_result[0]]
 
@@ -150,22 +200,11 @@ class Broker(object):
 if __name__ == "__main__":
     broker = Broker()
 
-    test = {
-        "question": "ดินดอนสามเหลี่ยมในเนเธอร์แลนด์มีชื่อว่าอะไร?",
-        "context": """ดินดอนสามเหลี่ยม ไรน์-เมิส ซึ่งเป็นภูมิภาคทางธรรมชาติที่สำคัญของเนเธอร์แลนด์เริ่มต้น
-               ใกล้มิลลิงเงิน อาน เดอ เรน ใกล้ชายแดนเนเธอร์แลนด์ติดกับเยอรมัน 
-               โดยมีสาขาของไรน์ไหลเข้าสู่แม่น้ำวาลและเนเดอร์เรน เนื่องจากน้ำส่วนใหญ่จากแม่น้ำไรน์
-               คำว่า ดินดอนสามเหลี่ยมไรน์ ซึ่งสั้นกว่าจึงเป็นคำที่ใช้เรียกกันทั่วไป อย่างไรก็ดี 
-               ชื่อนี้ยังใช้เรียกดินดอนสามเหลี่ยมบริเวณแม่น้ำซึ่งแม่น้ำไรน์ไหลเข้าสู่ทะเลสาบคอนสแตนซ์อีกด้วย
-               ดังนั้นการเรียกดินดอนสามเหลี่ยมซึ่งใหญ่กว่าว่าไรน์-เมิส หรือแม้กระทั่งดินแดนสามเหลี่ยมไรน์
-               -เมิส-สเกลต์จึงชัดเจนกว่า เนื่องจากแม่น้ำสเกลต์สิ้นสุดที่ดินดอนสามเหลี่ยมเดียวกัน"""
-    }
-
-    context = test['context']
-    question = test['question']
     result = {}
 
-    broker.passage_retrieval('EN', context, question, result)
-    broker.question_answering('TH', context, question, result)
+    broker.document_retrieval('EN', "", "Computational complexity theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty", result)
+    # broker.passage_retrieval('EN', context, question, result)
+    # broker.question_answering('TH', context, question, result)
 
-    print(result)
+
+    # print(result)

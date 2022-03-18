@@ -37,6 +37,7 @@
                 // console.log('current step: ' + response.cur_step);
             } else if (response.cur_step == 2) {
                 // console.log('current step: ' + response.cur_step);
+                updateContext(response.result);
             } else if (response.cur_step == 3) {
                 renderResult(response.result);
             } else if (response.cur_step == 4) {
@@ -211,6 +212,15 @@
         $('#context-textarea').val(current_examples[selectedId].context);
     }
 
+    function updateContext(result) {
+        if (result == null) {
+            return;
+        }
+        if (result.document) {
+            $('#context-textarea').val(result.document[0]);
+        }
+    }
+
     function getQuestionOptionHtml(QuestionId, Question) {
         let questionOption = `<option value="${QuestionId}">${Question}</option>`;
         return questionOption;
@@ -354,7 +364,11 @@
         let input_question = $('#my-question-input').val();
         let select_question = $('#example-question-select').find(":selected").val();
 
-        if (context == "" || (input_question == "" && select_question == "")) {
+        // if (context == "" || (input_question == "" && select_question == "")) {
+        //     return false;
+        // }
+
+        if (input_question == "" && select_question == "") {
             return false;
         }
 
