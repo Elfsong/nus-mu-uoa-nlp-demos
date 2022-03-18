@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="../static/bootstrap5/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/index.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,500;1,300&display=swap" rel="stylesheet">
+
+        <link rel="shortcut icon" href="../static/favicon.png" />
+        <title>QG Web Application</title>
+    </head>
+
+    <body>
+        <div class="container p-5 bk-primary-blue full-width font-500">
+            <h2>Question Generation Demo for Abel</h2>
+            <p>This is a demo for Abel's question generation model 😊</p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-7">
+                    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group py-4" role="group" aria-label="Inference types">
+                            <button type="button" id="precomputed-btn"  class="btn input-type-btn btn-primary">Precomputed</button>
+                            <button type="button" id="my-input-btn"     class="btn input-type-btn btn-outline-secondary">My Input</button>
+                        </div>
+                    </div>
+                    
+                    <form>
+                        <div class="mb-2 ms-2">Labels</div>
+  
+                        <div class="input-group mb-3" id="label-selection-group">
+                            <select class="form-select" id="label-select" aria-label="Label select with button addon">
+                                <option value="0">Reason Evidence</option>
+                                <option value="1">Fact Checking</option>
+                                <option value="2">Other Cases</option>
+                            </select>
+                            <button id="predict-btn" class="btn btn-primary predict-btn" type="button">Predict</button>
+                        </div>
+
+                        <div>
+                            <div class="progress">
+                                <div id="prediction-progress-bar" class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                            </div>
+                            <div id="prediction-progress-bar-description" class="fst-italic mb-4">Ready to go</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="context-textarea" class="form-label ms-2">Context</label>
+                            <textarea class="form-control" id="context-textarea" rows="15" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-5 answer-col" id="question-section">
+                    <div class="card border-success mb-4">
+                        <div class="card-header bg-success text-white">Questions</div>
+                        <div class="card-body text-success">
+                            <p>Click 'Predict' button to generate question.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../static/bootstrap5/bootstrap.min.js"></script>
+        <script src="../static/jquery/jquery3.6.0.min.js"></script>
+        <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+        <script src="../static/index.js"></script>
+    </body>
+</html>

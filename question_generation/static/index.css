@@ -1,0 +1,32 @@
+/*
+ *
+ *   Organisation: Broad AI Lab, University of Auckland
+ *   Author: Ziqi Wang
+ *   Date: 2021-05-11
+ *
+ */
+
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+.bk-primary-blue {
+    background: #00467f;
+    color: white;
+}
+
+.full-width {
+    max-width: 100%;
+}
+
+.font-500 {
+    font-weight: 500;
+}
+
+.answer-col {
+    padding-top: 117px;
+}
+
+.input-type-btn {
+    min-width: 120px;
+}

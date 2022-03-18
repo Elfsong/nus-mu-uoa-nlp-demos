@@ -1,0 +1,30 @@
+{
+    "examples": [
+        {
+            "label": "Reason Evidence",
+            "context": "I have a problem.\n\nI think my dog is sick.",
+            "best_question": "Why do you think your dog is sick?",
+            "questions": [
+                "How many people have you met that have had dogs that are sick?", 
+                "Why you think that your dog has to be sick?"
+            ]
+        },
+        {
+            "label": "Fact Checking",
+            "context": "I am Iron Man.\n\nI should save the world!",
+            "best_question": "Why do you think you can save the world?",
+            "questions": [
+                "How many people have you met that have had this hallucination？"
+            ]
+        },
+        {
+            "label": "Other cases",
+            "context": "I am Iron Man.\n\nI should save the world!\n\nLong live the King.",
+            "best_question": "Why do you think you can save the world?",
+            "questions": [
+                "How many people have you met that have had this hallucination？",
+                "This it an other case."
+            ]
+        }
+    ]
+}
