@@ -10,11 +10,13 @@ The back-end requires `Flask` and `nltk`, where `Flask` is a lightweight web fra
 
 - Flask: a lightweight web framework, version 2.0.1 is used in the project.  
 `pip install flask==2.0.1`
-- nltk: stands for Natural Language Toolkit. We use it to parse a whole chunk of string into arrays of sentences. This package is OPTIONAL if data pre-processing is not required by the prediction model. Version 3.6.2 is used in the project.   
+- nltk: stands for Natural Language Toolkit. We use it to parse a whole chunk of string into arrays of sentences. This package is OPTIONAL if data pre-processing is not required by the prediction model. Version 3.6.2 is used in the project.
 `pip install nltk==3.6.2`  
 NOTICE: nltk requires additional data for the sentence parsing task, please run the Python interpreter and type the following commands OR act according to the instruction of the error message:  
 `>>> import nltk`  
-`>>> nltk.download('punkt')` 
+`>>> nltk.download('punkt')`
+
+Before you run this platform, please remember to download the corresponding model files to the `data` folder. For example, you should download persona model files to `static/data/persona` if you want to run the persona demo.
 
 ## Run the web app
 
