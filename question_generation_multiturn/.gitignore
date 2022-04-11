@@ -1,1 +1,2 @@
-static/data/persona
+static/data/persona/*
+__pycache__/*

@@ -11,6 +11,7 @@ from transformers import AutoTokenizer, T5ForConditionalGeneration
 
 class Broker(object):
     def __init__(self, model_dir):
+        print("Broker init... (It may take minutes, depending on the model size)")
         self.model_dir = model_dir
         self.tokenizer = AutoTokenizer.from_pretrained("t5-large")
         self.model = T5ForConditionalGeneration.from_pretrained(self.model_dir)
@@ -33,15 +34,10 @@ class Broker(object):
 
 if __name__ == "__main__":
     broker = Broker("./static/data/persona")
-
     persona = "PERSONA:  i like to remodel homes. i like to go hunting. i like to shoot a bow. my favorite holiday is halloween."
-
     conversation_lines = ['Hello This is ArtQuest demo.', 'Ask me anything:)', 'How are you?', 'i like to dress up as a scary ghost this time of year', "How about to reconstruct your home?"]
-
     print(broker.construct_history(conversation_lines))
-
     result = broker.question_generation(persona, conversation_lines)
-
     print(result)
     
 

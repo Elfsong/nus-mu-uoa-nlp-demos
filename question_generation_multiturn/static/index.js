@@ -1,10 +1,6 @@
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//
-//   Organisation: Broad AI Lab, University of Auckland
-//   Author: Ziqi Wang
-//   Date: 2021-05-12
-//
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// Description: This script is used to render the chatbox and support interactive operations.
+// Author: Mingzhe Du (mingzhe@nus.edu.sg)
+// Date: 03-April-2022
 
 (function () {
     // Picture and Persona
@@ -119,6 +115,7 @@
         window.socket.emit('predict', {data: JSON.stringify(data)});
     }
 
+    // Init function
     $(window).init(function() {
         // Socket IO Init
         window.socket = io({ autoConnect: false });
@@ -142,19 +139,17 @@
         });
     });
 
-    // Click "send" button
+    // Event hooks -> begin
     $('.send_message').click(function (e) {
         pedict();
     });
     
-    // Press "Enter" 
     $('.message_input').keyup(function (e) {
         if (e.which === 13) { pedict(); }
     });
 
-
     $('.carousel').on('slide.bs.carousel', function () {
         cleanMessage();
     });
-
+    // Event hooks <- end
 })();
