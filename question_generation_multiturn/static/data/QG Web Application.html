@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Required meta tags -->
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="./QG Web Application_files/bootstrap.min.css" rel="stylesheet">
+        <link href="./QG Web Application_files/index.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com/">
+        <link href="./QG Web Application_files/css2" rel="stylesheet">
+
+        <link rel="shortcut icon" href="http://0.0.0.0:3000/static/favicon.png">
+        <title>QG Web Application</title>
+    </head>
+
+    <body>
+        <div class="container p-5 bk-primary-blue full-width font-500">
+            <h2>Question Generation Demo for Abel</h2>
+            <p>This is a demo for Abel's question generation model 😊</p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-7" id="chat-section">
+                    <div class="padding"> </div>
+                    <div class="chat_window">
+                        <div class="top_menu">
+                            <div class="title">ArtQuest</div>
+                        </div>
+                        <ul class="messages"><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">Hello This is ArtQuest demo.</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">Ask me anything:)</div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">Hello</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">hey there! how are you?</div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">Rohani?</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">yes, she's a student of Georgette Chen at the Nanyang academy of</div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">Who is the woman?</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">i'm the woman.</div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">interesting</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">i'm the man</div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">monet?</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">nope........ </div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">Son</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">oh........</div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">who are you</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">i'm a painter</div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">Family portrait</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">i'm a painter</div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">Chen</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">oh</div>
+                            </div>
+                        </li><li class="message right appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">Who is my friend?</div>
+                            </div>
+                        </li><li class="message left appeared">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">i'm not sure</div>
+                            </div>
+                        </li></ul>
+                        <div class="bottom_wrapper clearfix">
+                            <div class="message_input_wrapper">
+                                <input class="message_input" placeholder="Type your message here...">
+                            </div>
+                            <div class="send_message">
+                                <div class="icon"></div>
+                                <div class="text">Send</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message_template">
+                        <li class="message">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text"></div>
+                            </div>
+                        </li>
+                    </div>
+
+                </div>
+
+                <div class="col-5" id="show-section">
+                    <div style="padding-top: 10%; "></div>
+
+                    <div id="carousel-slides" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-slides" data-bs-slide-to="0" aria-label="Slide 0" class=""></button><button type="button" data-bs-target="#carousel-slides" data-bs-slide-to="1" aria-label="Slide 1" class=""></button><button type="button" data-bs-target="#carousel-slides" data-bs-slide-to="2" aria-label="Slide 2" class="active" aria-current="true"></button></div>
+                    <div class="carousel-inner">  <div class="carousel-item">
+                            <img src="./QG Web Application_files/picture_1.jpeg" style="height: 500px; width: auto;" class="rounded mx-auto d-block shadow-lg" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Woman with a Parasol</h5>
+                                <p style="font-size:11px;">Monet's light, spontaneous brushwork creates splashes of colour. Mrs Monet's veil is blown by the wind, as is her billowing white dress; the waving grass of the meadow is echoed by the green underside of her parasol. She is seen as if from below, with a strong upward perspective, against fluffy white clouds in an azure sky. A boy, the Monets' seven-year-old son, is placed further away, concealed behind a rise in the ground and visible only from the waist up, creating a sense of depth.</p>
+                            </div>
+                        </div>  <div class="carousel-item">
+                            <img src="./QG Web Application_files/picture_2.jpeg" style="height: 500px; width: auto;" class="rounded mx-auto d-block shadow-lg" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Rohani</h5>
+                                <p style="font-size:11px;">This is a painting showing Rohani. The painting was made by Georgette Chen. Rohani was a student of Chen's at the Nanyang Academy of Fine Arts (NAFA). She was also a friend beyond the classroom. Here, she is vibrantly clothed in a matching red dress and headscarf. She is also wearing an accessory, a delicate gold pin in the shape of an R. Chen often drove Rohani home after school, as both lived around Siglap.</p>
+                            </div>
+                        </div>  <div class="carousel-item active">
+                            <img src="./QG Web Application_files/picture_3.jpeg" style="height: 500px; width: auto;" class="rounded mx-auto d-block shadow-lg" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Family Portrait</h5>
+                                <p style="font-size:11px;">This is a painting 'Family Portrait'. Family Portrait depicts the Chen family (no relation), Chen’s long-time friends and neighbours when she was living in Penang. Pauline Chen is posed at the centre of this portrait dressed in a plaid cheongsam. Her husband, Chen Fah Shin, gazes past her shoulder at the newspaper</p>
+                            </div>
+                        </div></div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-slides" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-slides" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./QG Web Application_files/bootstrap.min.js"></script>
+        <script src="./QG Web Application_files/jquery3.6.0.min.js"></script>
+        <script src="./QG Web Application_files/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+        <script src="./QG Web Application_files/index.js"></script>
+    
+</body></html>
