@@ -68,7 +68,7 @@ def predict_request(request):
         broker.document_retrieval(language, context, question, result)
         time.sleep(2)
 
-        status = '2/3 - Passage retrieval...'
+        status = '2/3 - Paragraph retrieval...'
         emit('update_status', {'status': status, 'cur_step': 2, 'total_step': total_step, 'completed': completed, 'result': result})
         broker.passage_retrieval(language, context, question, result)
         time.sleep(2)
@@ -108,3 +108,4 @@ if __name__ == "__main__":
 
     # app.run(host="0.0.0.0", port=port_num, threaded=True)
     socketio.run(app, host="0.0.0.0", port=port_num)
+    # socketio.run(app, host="0.0.0.0", port=port_num, ssl_context=('/etc/letsencrypt/live/nlp-platform.online-0001/fullchain.pem', '/etc/letsencrypt/live/nlp-platform.online-0001/privkey.pem'))

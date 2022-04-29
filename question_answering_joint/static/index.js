@@ -315,7 +315,7 @@
         // Selected passage
         if (result.passages) {
             for (let i = 0; i < result.passages.length; i++) {
-                let passage = { CardTitle: 'Selected Passage' + (i+1), CardContent: result.passages[i], CardType: "passage"};
+                let passage = { CardTitle: 'Selected Paragraph ' + (i+1), CardContent: result.passages[i], CardType: "passage"};
                 let passageCard = getCardHtml(passage);
                 output += passageCard;
             }

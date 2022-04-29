@@ -6,11 +6,6 @@
     // Picture and Persona
     PP_data = [
         {
-            "picture_url": "../static/data/picture_1.jpeg", 
-            "title": "Woman with a Parasol", 
-            "persona":"Monet's light, spontaneous brushwork creates splashes of colour. Mrs Monet's veil is blown by the wind, as is her billowing white dress; the waving grass of the meadow is echoed by the green underside of her parasol. She is seen as if from below, with a strong upward perspective, against fluffy white clouds in an azure sky. A boy, the Monets' seven-year-old son, is placed further away, concealed behind a rise in the ground and visible only from the waist up, creating a sense of depth."
-        },
-        {
             "picture_url": "../static/data/picture_2.jpeg", 
             "title": "Rohani", 
             "persona":"This is a painting showing Rohani. The painting was made by Georgette Chen. Rohani was a student of Chen's at the Nanyang Academy of Fine Arts (NAFA). She was also a friend beyond the classroom. Here, she is vibrantly clothed in a matching red dress and headscarf. She is also wearing an accessory, a delicate gold pin in the shape of an R. Chen often drove Rohani home after school, as both lived around Siglap."
@@ -19,7 +14,12 @@
             "picture_url": "../static/data/picture_3.jpeg", 
             "title": "Family Portrait", 
             "persona":"This is a painting 'Family Portrait'. Family Portrait depicts the Chen family (no relation), Chen’s long-time friends and neighbours when she was living in Penang. Pauline Chen is posed at the centre of this portrait dressed in a plaid cheongsam. Her husband, Chen Fah Shin, gazes past her shoulder at the newspaper"
-        }
+        },
+        {
+            "picture_url": "../static/data/picture_1.jpeg", 
+            "title": "Woman with a Parasol", 
+            "persona":"Monet's light, spontaneous brushwork creates splashes of colour. Mrs Monet's veil is blown by the wind, as is her billowing white dress; the waving grass of the meadow is echoed by the green underside of her parasol. She is seen as if from below, with a strong upward perspective, against fluffy white clouds in an azure sky. A boy, the Monets' seven-year-old son, is placed further away, concealed behind a rise in the ground and visible only from the waist up, creating a sense of depth."
+        },
     ];
 
     // Message Class
@@ -81,13 +81,14 @@
             items += `  <div class="carousel-item ${i==0?"active":""}">
                             <img src="${PP_data[i].picture_url}" style="height: 500px; width: auto;" class="rounded mx-auto d-block shadow-lg" alt="...">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>${PP_data[i].title}</h5>
-                                <p style="font-size:11px;">${PP_data[i].persona}</p>
+                                <h4>${PP_data[i].title}</h4>
+                                <b style="font-size:15px">${PP_data[i].persona}</b>
                             </div>
                         </div>`;
         }
         $('.carousel-indicators').html(indicators);
         $('.carousel-inner').html(items);
+        $('.carousel').carousel('pause');
     };
 
     function pedict() {
