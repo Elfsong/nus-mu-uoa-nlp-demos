@@ -143,7 +143,7 @@ class QAProxy(object):
 
         return output["answer"]
 
-class Broker(object):
+class MultilingualQAModel(object):
     def __init__(self):
         self.qa_proxy = QAProxy()
         self.tf_idf_proxy = TFIDF_proxy()
@@ -155,19 +155,19 @@ class Broker(object):
     def set_corpus(self):
         print("[+] Loding [EN] corpus...")
         self.corpus["EN"] = dict()
-        docs, vectors = self.get_corpus("static/data/EnglishDocuments.json", "EN")
+        docs, vectors = self.get_corpus("modules/multilingual_qa/static/data/EnglishDocuments.json", "EN")
         self.corpus["EN"]["docs"] = docs
         self.corpus["EN"]["vectors"] = vectors
 
         print("[+] Loding [MS] corpus...")
         self.corpus["MS"] = dict()
-        docs, vectors = self.get_corpus("static/data/MalayDocuments.json", "MS")
+        docs, vectors = self.get_corpus("modules/multilingual_qa/static/data/MalayDocuments.json", "MS")
         self.corpus["MS"]["docs"] = docs
         self.corpus["MS"]["vectors"] = vectors
 
         print("[+] Loding [TH] corpus...")
         self.corpus["TH"] = dict()
-        docs, vectors = self.get_corpus("static/data/ThaiDocuments.json", "TH")
+        docs, vectors = self.get_corpus("modules/multilingual_qa/static/data/ThaiDocuments.json", "TH")
         self.corpus["TH"]["docs"] = docs
         self.corpus["TH"]["vectors"] = vectors
 
@@ -198,13 +198,12 @@ class Broker(object):
         result["answer"] = answer
 
 if __name__ == "__main__":
-    broker = Broker()
+    broker = MultilingualQAModel()
 
     result = {}
 
     broker.document_retrieval('EN', "", "Computational complexity theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty", result)
     # broker.passage_retrieval('EN', context, question, result)
     # broker.question_answering('TH', context, question, result)
-
 
     # print(result)

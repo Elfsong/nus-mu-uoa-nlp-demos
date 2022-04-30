@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="static/bootstrap5/bootstrap.min.css" rel="stylesheet">
+        <link href="static/index.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,500;1,300&display=swap" rel="stylesheet">
+
+        <link rel="shortcut icon" href="static/favicon.png" />
+        <title>QA Web Application</title>
+    </head>
+
+    <body>
+        <div class="container p-5 bk-primary-blue full-width font-500">
+            <h2>NZ-SG Joint QA Project demo</h2>
+            <p>This is a demo of the NZ-SG question answering model 😊</p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-7">
+                    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group py-4" role="group" aria-label="Inference types">
+                            <button type="button" id="precomputed-btn"  class="btn input-type-btn btn-primary">Precomputed</button>
+                            <button type="button" id="example-btn"      class="btn input-type-btn btn-outline-secondary">Examples</button>
+                            <button type="button" id="my-input-btn"     class="btn input-type-btn btn-outline-secondary">My Input</button>
+                        </div>
+    
+                        <div class="btn-group py-4" role="group" aria-label="Basic example">
+                            <button type="button" id="english-btn"  class="btn btn-success">EN</button>
+                            <button type="button" id="malay-btn"    class="btn btn-outline-secondary">MS</button>
+                            <button type="button" id="thai-btn"     class="btn btn-outline-secondary">TH</button>
+                            <button type="button" id="maori-btn"    class="btn btn-outline-secondary">MI</button>
+                        </div>
+                    </div>
+                    
+                    <form>
+                        <div class="mb-2 ms-2">Question</div>
+                        <div class="input-group mb-3 d-none" id="my-question">
+                            <input type="text" id="my-question-input" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-primary predict-btn" type="button" id="my-input-predict-btn">Predict</button>
+                        </div>
+                        <div class="input-group mb-3" id="example-question">
+                            <select class="form-select" id="example-question-select" aria-label="Example select with button addon">
+                                <option value="1">Example 1</option>
+                                <option value="2">Example 2</option>
+                                <option value="3">Example 3</option>
+                            </select>
+                            <button id="example-predict-btn" class="btn btn-primary predict-btn" type="button">Predict</button>
+                        </div>
+                        <div>
+                            <div class="progress">
+                                <div id="prediction-progress-bar" class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                            </div>
+                            <div id="prediction-progress-bar-description" class="fst-italic mb-4">Ready to go</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="context-textarea" class="form-label ms-2">Context</label>
+                            <textarea class="form-control" id="context-textarea" rows="15" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-5 answer-col" id="answer-section">
+                    <div class="card border-success mb-4">
+                        <div class="card-header bg-success text-white">Answer</div>
+                        <div class="card-body text-success">
+                            <p>Click 'Predict' button to generate answer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="static/bootstrap5/bootstrap.min.js"></script>
+        <script src="static/jquery/jquery3.6.0.min.js"></script>
+        <script src="static/jquery/socket.io.min.js"></script>
+        <script src="static/index.js"></script>
+    </body>
+</html>

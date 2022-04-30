@@ -229,15 +229,15 @@
     function getExample(language) {
         switch (language) {
             case 'EN':
-                return loadJsonFile("./static/data/englishExample.json");
+                return loadJsonFile("static/data/englishExample.json");
             case 'MS':
-                return loadJsonFile("./static/data/malayExample.json");
+                return loadJsonFile("static/data/malayExample.json");
             case 'TH':
-                return loadJsonFile("./static/data/thaiExample.json");
+                return loadJsonFile("static/data/thaiExample.json");
             case 'MI':
-                return loadJsonFile("./static/data/maoriExample.json");
+                return loadJsonFile("static/data/maoriExample.json");
             default:
-                return loadJsonFile("./static/data/englishExample.json");
+                return loadJsonFile("static/data/englishExample.json");
         }
     }
 
@@ -438,7 +438,7 @@
 
             // Socket.IO
             window.socket.open();
-            window.socket.emit('predict', {data: JSON.stringify(data)});
+            window.socket.emit('multilingual_qa_request', {data: JSON.stringify(data)});
             updateProgressBarTo(0)
 
         } else {

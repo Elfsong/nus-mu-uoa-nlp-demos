@@ -7,7 +7,8 @@
         <title>NZ-SG Joint Demo Platform</title>
 
         <!-- Bootstrap CSS -->
-        <link href="../static/bootstrap5/bootstrap.min.css" rel="stylesheet">
+        
+        <link href="{{ url_for('.static', filename='bootstrap5/bootstrap.min.css') }}" rel="stylesheet">
         <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
 
         <style>
@@ -33,8 +34,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-md-7 py-4">
-                            <h4 class="text-white">License</h4>
-                            <p class="text-muted">Add license here(Mingzhe)</p>
+                            <h4 class="text-white">Music</h4>
+                            <p class="text-muted">Add Music here(Mingzhe)</p>
                         </div>
                         <div class="col-sm-4 offset-md-1 py-4">
                             <h4 class="text-white">Contact</h4>
@@ -80,7 +81,7 @@
 
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="../static/Thai-feature.jpeg" role="img" aria-label="Placeholder: Thumbnail"></img>
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ url_for('.static', filename='thai-feature.jpeg') }}" role="img" aria-label="Placeholder: Thumbnail"></img>
                             <div class="card-img-overlay d-flex justify-content-center">
                                 <h2 class="card-title align-self-center mx-auto text-light">Multilingual QA Demo</h2>
                             </div>
@@ -99,7 +100,7 @@
 
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="../static/Georgette-Feature.jpeg" role="img" aria-label="Placeholder: Thumbnail"></img>
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ url_for('.static', filename='georgette-feature.jpeg') }}" role="img" aria-label="Placeholder: Thumbnail"></img>
                             <div class="card-img-overlay d-flex justify-content-center">
                                 <h2 class="card-title align-self-center mx-auto text-light">ArtQuest Demo</h2>
                             </div>
@@ -118,7 +119,7 @@
 
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="../static/Haka-feature.jpeg" role="img" aria-label="Placeholder: Thumbnail"></img>
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ url_for('.static', filename='haka-feature.jpeg') }}" role="img" aria-label="Placeholder: Thumbnail"></img>
                             <div class="card-img-overlay d-flex justify-content-center">
                                 <h2 class="card-title align-self-center mx-auto text-light">More Demos</h2>
                             </div>
@@ -149,9 +150,7 @@
                 <p class="mb-1">&copy; NUS IDS 2022</p>
             </div>
         </footer>
-
-        <script src="../static/bootstrap5/bootstrap.min.js"></script>
-        <script src="../static/jquery/jquery3.6.0.min.js"></script>
-        <script src="../static/jquery/socket.io.min.js"></script>
+        
+        <script src="{{ url_for('.static', filename='bootstrap5/bootstrap.min.js') }}"></script>
     </body>
 </html>
