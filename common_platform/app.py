@@ -119,4 +119,4 @@ if __name__ == "__main__":
     while port_num < 0 or port_num > 65535 or is_port_occupied(port_num):
         port_num = int_with_default(input('Please specify a port number (0 - 65535): '), -1)
 
-    socketio.run(app, host="0.0.0.0", ssl_context=('/etc/letsencrypt/live/nlp-platform.online-0001/fullchain.pem', '/etc/letsencrypt/live/nlp-platform.online-0001/privkey.pem'))
+    socketio.run(app, host="0.0.0.0", port=port_num, ssl_context=('/etc/letsencrypt/live/nlp-platform.online-0001/fullchain.pem', '/etc/letsencrypt/live/nlp-platform.online-0001/privkey.pem'))
