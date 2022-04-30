@@ -8,7 +8,7 @@
 
         <!-- Bootstrap CSS -->
         
-        <link href="{{ url_for('.static', filename='bootstrap5/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="static/bootstrap5/bootstrap.min.css" rel="stylesheet">
         <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
 
         <style>
@@ -34,8 +34,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-md-7 py-4">
-                            <h4 class="text-white">Music</h4>
-                            <p class="text-muted">Add Music here(Mingzhe)</p>
+                            <h4 class="text-white">Vibe</h4>
+                            <audio controls>
+                                <source src="static/forrest_gump.m4a" type="audio/mp4">
+                                Your browser does not support the audio element...
+                            </audio>
                         </div>
                         <div class="col-sm-4 offset-md-1 py-4">
                             <h4 class="text-white">Contact</h4>
@@ -65,10 +68,10 @@
             <section class="py-5 text-center container">
                 <div class="row py-lg-5">
                 <div class="col-lg-8 col-md-8 mx-auto">
-                    <h1 class="fw-light">NZ-SG Project</h1>
+                    <h1 class="fw-light">NZ-SG Introduction</h1>
                     <p class="lead text-muted">This project is a collaboration between NUS and a multi-institutional NZ data science research team from Massey University and the University of Auckland to develop novel NLP techniques for an intelligent conversational Q&A system in Malay, Singlish, and te reo Māori.  We will focus developing NLP methodologies for low-resource setting for the Malay/Singlish Q&A module while our NZ collaborators will focus on Māori Q&A.</p>
                     <p>
-                    <a href="#" class="btn btn-primary my-2">Explore more</a>
+                    <a href="https://ids.nus.edu.sg/nlp.html" class="btn btn-primary my-2">Explore more</a>
                     </p>
                 </div>
                 </div>
@@ -90,7 +93,7 @@
                                 <p class="card-text">This is a Multilingual QA demo.</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <a href="https://nlp-platform.online/multilingual_qa" class="btn btn-sm btn-outline-secondary" role="button">View</a>
                                     </div>
                                     <small class="text-muted">NZ-SG</small>
                                 </div>
@@ -109,7 +112,8 @@
                                 <p class="card-text">This is a ArtQuest demo.</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <a href="https://nlp-platform.online/artquest" class="btn btn-sm btn-outline-secondary" role="button">View</a>
+                                        <a href="https://nlp-platform.online/artquest/demo" class="btn btn-sm btn-outline-secondary" role="button">Slides</a>
                                     </div>
                                     <small class="text-muted">SG</small>
                                 </div>
@@ -128,7 +132,7 @@
                                 <p class="card-text">Coming soon!</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <a href="https://www.google.com/search?q=curiosity" class="btn btn-sm btn-outline-secondary" role="button">View</a>
                                     </div>
                                     <small class="text-muted">NZ-SG</small>
                                 </div>
@@ -151,6 +155,6 @@
             </div>
         </footer>
         
-        <script src="{{ url_for('.static', filename='bootstrap5/bootstrap.min.js') }}"></script>
+        <script src="static/bootstrap5/bootstrap.min.js"></script>
     </body>
 </html>

@@ -15,7 +15,7 @@ import sys
 import time
 import json
 
-from flask import Flask, render_template, request, jsonify, Response
+from flask import Flask, render_template, request, jsonify, Response, redirect, url_for
 from flask_socketio import SocketIO, emit
 
 from modules.homepage.homepage import homepage
@@ -48,7 +48,7 @@ def is_port_occupied(port):
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return redirect(url_for('homepage.index'))
 
 # homepage
 app.register_blueprint(homepage, url_prefix='/homepage')
@@ -120,3 +120,15 @@ if __name__ == "__main__":
         port_num = int_with_default(input('Please specify a port number (0 - 65535): '), -1)
 
     socketio.run(app, host="0.0.0.0", port=port_num, ssl_context=('/etc/letsencrypt/live/nlp-platform.online-0001/fullchain.pem', '/etc/letsencrypt/live/nlp-platform.online-0001/privkey.pem'))
+
+"""
+sudo /home/lucky_reactor/miniconda3/bin/gunicorn -k gevent \
+                                                 -w 1 \
+                                                 -b 0.0.0.0:443 \
+                                                 -preload \
+                                                 --certfile /etc/letsencrypt/live/nlp-platform.online-0001/fullchain.pem \
+                                                 --keyfile /etc/letsencrypt/live/nlp-platform.online-0001/privkey.pem \
+                                                 -t 360 \
+                                                 -D \
+                                                 app:app  
+"""
