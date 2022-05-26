@@ -12,8 +12,11 @@ from collections import defaultdict
 line_bot = Blueprint('line_bot', __name__, template_folder='./templates', static_folder='./static')
 
 # Line config
-CHANNEL_ACCESS_TOKEN = """sTnMwh05pEPnDcCghypDdTc+oYzzp3zXMsAuwV2SsxCKTa3Sa3exE30Lo4lyYdgg0ZzYQFgKc+KZ150KNcM+bWtMQ/1FHo1ClinMfcHTlcqb2Q/f+CURK5QCoea+0Sttmk599sw000zsHGqdRzREoAdB04t89/1O/w1cDnyilFU="""
-CHANNEL_SECRET = """9858716024d4e091527327fc16153499"""
+with open("./static/password", "r") as password_f:
+    lines = password_f.readlines()
+    CHANNEL_ACCESS_TOKEN = lines[0].strip().split("\t")[1]
+    CHANNEL_SECRET = lines[1].strip().split("\t")[1]
+
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 

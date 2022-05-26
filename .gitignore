@@ -2,3 +2,5 @@
 */.DS_Store
 .idea/
 */__pycache__
+/common_platform/modules/line_bot/static/password
+/common_platform/reload
