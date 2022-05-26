@@ -4,3 +4,4 @@
 */__pycache__
 /common_platform/modules/line_bot/static/password
 /common_platform/reload
+common_platform/modules/line_bot/__pycache__/line_bot.cpython-39.pyc
