@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- !!! IDS: Change the website title here -->
+  <title>NUS</title>
+
+  <!-- Import -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="lib/bootstrap/v5.0.2.css" type="text/css" />
+  <link rel="stylesheet" href="css/styleguide.css" type="text/css" />
+  <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <script src="lib/bootstrap/v5.0.2.js" type="text/javascript"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1546804-1"></script>
+  <style>
+    .project_title {
+      text-align: left;
+      color: #0066bf;
+      line-height: 1.4em;
+      font-size: 2.5em;
+    }
+  </style>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-1546804-1');
+  </script>
+  <script>
+    // Import header
+    fetch("./templates/header.html")
+      .then(response => {
+        return response.text()
+      })
+      .then(data => {
+        document.querySelector("header").innerHTML += data;
+      });
+
+    // Import banner
+    fetch("./templates/title-banner.html")
+      .then(response => {
+        return response.text()
+      })
+      .then(data => {
+        document.querySelector(".dept-banner").innerHTML += data;
+      });
+
+    // Import footer
+    fetch("./templates/footer.html")
+      .then(response => {
+        return response.text()
+      })
+      .then(data => {
+        document.querySelector("footer").innerHTML += data;
+      });
+  </script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+</head>
+
+<body>
+  <div class="nus-body-container">
+    <div class="nus-wrapper">
+      <!-- HEADER -->
+      <header class="nus-header">
+        <!-- !!! IDS: import from templates/header.html-->
+      </header>
+
+      <!-- START BASIC HOMEPAGE -->
+      <div class="dept-banner" style=" font-weight: bold; padding: 20px 0; background: #d8d8d8;">
+        <!-- !!! IDS: import from templates/banner.html-->
+      </div>
+
+      <!-- COMPONENTS CONTENT - START -->
+      <div class="container-lg nus-components my-3">
+
+        <h2 class="project_title">About</h2>
+        <div class="row">
+
+          <!-- CONTENT -->
+          <div class="col-lg-12">
+            <div class="blog-post">
+              <p>Te reo Māori, Malay, and Singlish, all play central roles in the culture and identity of the Māori and
+                Singaporean communities. By revitalising and promoting the understanding of these languages, we can
+                preserve and provide access to the vast indigenous and local knowledge they express.</p>
+
+              <p>Recent advances in data science and deep learning for natural language processing (NLP) have opened up
+                exciting new possibilities in major languages such as English and Chinese. However, there is no software
+                system that can systematically integrate listening to, speaking, and reading in less widely used
+                languages such as te reo Māori, Malay, or Singlish.</p>
+
+              <p>This project will develop novel speech processing and NLP techniques for machine translation and Q&A to
+                create an intelligent conversational Q&A system in te reo Māori, Malay, and Singlish. The multi-lingual
+                Q&A system integrates listening to, speaking, and reading te reo Māori/Malay/Singlish to benefit
+                learners and users. It will explore ways in which data science and AI systems can help gain knowledge
+                expressed in these languages effectively, thereby broadening both the preservation and impact of our
+                cultural heritage with technology.</p>
+
+              <p>This collaboration is funded by <a target="_blank" href="https://www.nrf.gov.sg/">Singapore’s National
+                  Research Foundation</a> and <a target="_blank" href="https://sdsc.sg/">Singapore Data Science
+                  Consortium</a>, and the <a target="_blank"
+                  href="https://www.mbie.govt.nz/science-and-technology/science-and-innovation/funding-information-and-opportunities/investment-funds/catalyst-fund/catalyst-strategic-new-zealand-singapore-data-science-research-programme/">Catalyst:
+                  Strategic – New Zealand-Singapore Data Science Research Programme</a> of <a target="_blank"
+                  href="https://www.mbie.govt.nz/">New Zealand’s Ministry of Business, Innovation & Employment
+                  (MBIE)</a>, under the Government-wide <a target="_blank"
+                  href="https://www.mfat.govt.nz/en/trade/free-trade-agreements/free-trade-agreements-in-force/nz-singapore-closer-economic-partnership/nz-singapore-enhanced-partnership/">New
+                  Zealand-Singapore Enhanced Partnership</a>.
+              </p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <!-- COMPONENTS CONTENT - END -->
+
+      <div class="my-3">&nbsp;</div>
+      <!-- END BASIC HOMEPAGE -->
+      <!-- NUS BREADCRUMBS - START -->
+      <div class="nus-breadcrumbs">
+        <div class="container-lg">
+          <ul>
+            <li>
+              <a href="/"><span class="icon faicon fa-home"></span></a>
+              <a class="" href="about.html">About</a>
+            </li>
+            <!-- <li>Breadcrumb 2</li> -->
+          </ul>
+        </div>
+      </div>
+      <!-- NUS BREADCRUMBS - END -->
+      <!-- FOOTER - START -->
+      <footer class="nus-footer" id="footer">
+      </footer>
+      <!-- FOOTER - END -->
+    </div>
+    <!-- NUS WRAPPER -->
+  </div>
+  <!-- NUS BODY CONTAINER -->
+  <a name="footer"></a>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+
+<script src="https://nusit.nus.edu.sg/cookieconsent/cookieconsent-config.js"></script>
+
+</html>

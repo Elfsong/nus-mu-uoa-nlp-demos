@@ -1,0 +1,112 @@
+/**
+ * @copyright	Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+html {
+	height: 100%;
+}
+
+body {
+	background: #003d7c;
+	background-image: -webkit-gradient(radial,center center, 0, center center, 460, from(#004a96), to(#002449));
+	background-image: -webkit-radial-gradient(circle, #004a96, #002449);
+	background-image: -moz-radial-gradient(circle, #004a96, #002449);
+	background-image: -o-radial-gradient(circle, #004a96, #002449);
+	background-image: radial-gradient(circle, #004a96, #002449);
+	background-repeat: no-repeat;
+	color: #fff;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	height: 100%;
+}
+
+.error-masthead {
+	padding: 20px;
+	text-align: center;
+	
+}
+
+.error-masthead img {
+	width: 130px;
+	margin-top: 60px;
+}
+
+.error {
+	width: 100%;
+	text-align: center;
+	margin-top: 80px;
+}
+
+.error-code {
+	font-weight: 200;
+	font-size: 280px;
+	line-height: 1.1;
+	margin: 0;
+}
+
+.error-message {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 30px;
+	font-weight: 200;
+	line-height: 1.1;
+}
+
+.error-buttons {
+	display: block;
+	margin-top: 80px;
+}
+
+.error-buttons a {
+	background: #ef7c00;
+	border-radius: 3px;
+	font-size: 24px;
+	font-weight: 200;
+	line-height: 1.1;
+	color: #fff;
+	padding: 15px 20px;
+	display: inline-block;
+	text-decoration: none;
+	margin: 0 10px;
+	-webkit-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+.error-buttons a:hover {
+	background: #ff890a;
+}
+
+
+@media screen and (max-width: 480px) {
+
+	.error {
+		margin-top: 40px;
+	}
+
+	.error-masthead {
+		text-align: center;
+	}
+
+	.error-masthead img {
+		width: 100px;
+	}
+
+    .error-code {
+		font-size: 100px;
+	}
+
+	.error-message {
+		font-size: 20px;
+	}
+
+	.error-buttons {
+		margin-top: 40px;
+	}
+
+	.error-buttons a {
+		font-size: 20px;
+	}
+
+}
