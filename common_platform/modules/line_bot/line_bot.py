@@ -12,8 +12,8 @@ from collections import defaultdict
 line_bot = Blueprint('line_bot', __name__, template_folder='./templates', static_folder='./static')
 
 # Line config
-with open("./static/password", "r") as password_f:
-    lines = password_f.readlines()
+with open("./modules/line_bot/static/password", "r") as password_f:
+    lines = list(password_f.readlines())
     CHANNEL_ACCESS_TOKEN = lines[0].strip().split("\t")[1]
     CHANNEL_SECRET = lines[1].strip().split("\t")[1]
 
