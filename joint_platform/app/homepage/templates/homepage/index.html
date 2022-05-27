@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <title>NZ-SG Joint Demo Platform</title>
+
+        <!-- Bootstrap CSS -->
+        
+        <link href="static/bootstrap5/bootstrap.min.css" rel="stylesheet">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
+
+        <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <div class="collapse bg-dark" id="navbarHeader">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-md-7 py-4">
+                            <h4 class="text-white">Vibe</h4>
+                            <audio controls>
+                                <source src="static/forrest_gump.m4a" type="audio/mp4">
+                                Your browser does not support the audio element...
+                            </audio>
+                        </div>
+                        <div class="col-sm-4 offset-md-1 py-4">
+                            <h4 class="text-white">Contact</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-white">NZ-team</a></li>
+                                <li><a href="#" class="text-white">SG-team</a></li>
+                                <li><a href="#" class="text-white">Contact us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar navbar-dark bg-primary shadow-sm">
+                <div class="container">
+                    <a href="#" class="navbar-brand d-flex align-items-center">
+                        <strong>NZ-SG Joint Demo Platform</strong>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                <div class="col-lg-8 col-md-8 mx-auto">
+                    <h1 class="fw-light">NZ-SG Introduction</h1>
+                    <p class="lead text-muted">This project is a collaboration between NUS and a multi-institutional NZ data science research team from Massey University and the University of Auckland to develop novel NLP techniques for an intelligent conversational Q&A system in Malay, Singlish, and te reo Māori.  We will focus developing NLP methodologies for low-resource setting for the Malay/Singlish Q&A module while our NZ collaborators will focus on Māori Q&A.</p>
+                    <p>
+                    <a href="https://ids.nus.edu.sg/nlp.html" class="btn btn-primary my-2">Explore more</a>
+                    </p>
+                </div>
+                </div>
+            </section>
+
+            <div class="album py-5 bg-light">
+                <div class="container">
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ url_for('.static', filename='thai-feature.jpeg') }}" role="img" aria-label="Placeholder: Thumbnail"></img>
+                            <div class="card-img-overlay d-flex justify-content-center">
+                                <h2 class="card-title align-self-center mx-auto text-light">Multilingual QA Demo</h2>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="card-text">This is a Multilingual QA demo.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="https://nlp-platform.online/multilingual_qa" class="btn btn-sm btn-outline-secondary" role="button">View</a>
+                                    </div>
+                                    <small class="text-muted">NZ-SG</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ url_for('.static', filename='georgette-feature.jpeg') }}" role="img" aria-label="Placeholder: Thumbnail"></img>
+                            <div class="card-img-overlay d-flex justify-content-center">
+                                <h2 class="card-title align-self-center mx-auto text-light">ArtQuest Demo</h2>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="card-text">This is a ArtQuest demo.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="https://nlp-platform.online/artquest" class="btn btn-sm btn-outline-secondary" role="button">View</a>
+                                        <a href="https://nlp-platform.online/artquest/demo" class="btn btn-sm btn-outline-secondary" role="button">Slides</a>
+                                    </div>
+                                    <small class="text-muted">SG</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ url_for('.static', filename='haka-feature.jpeg') }}" role="img" aria-label="Placeholder: Thumbnail"></img>
+                            <div class="card-img-overlay d-flex justify-content-center">
+                                <h2 class="card-title align-self-center mx-auto text-light">More Demos</h2>
+                            </div>
+                            
+                            <div class="card-body">
+                                <p class="card-text">Coming soon!</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="https://www.google.com/search?q=curiosity" class="btn btn-sm btn-outline-secondary" role="button">View</a>
+                                    </div>
+                                    <small class="text-muted">NZ-SG</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="text-muted py-5">
+            <div class="container">
+                <p class="float-end mb-1">
+                    <a href="#">Back to top</a>
+                </p>
+                <p class="mb-1">&copy; NUS IDS 2022</p>
+            </div>
+        </footer>
+        
+        <script src="static/bootstrap5/bootstrap.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+{
+    "examples": [{
+        "question": "Maori question 1",
+        "context": "Maori context 1",
+        "passages": ["Maori passage 1", "Maori passage 2", "Maori passage 3"],
+        "answer": "placeholder"
+    }, {
+        "question": "Maori question 2",
+        "context": "Maori context 2",
+        "passages": ["Maori passage 1", "Maori passage 2", "Maori passage 3"],
+        "answer": "placeholder"
+    }, {
+        "question": "Maori question 3",
+        "context": "Maori context 3",
+        "passages": ["Maori passage 1", "Maori passage 2", "Maori passage 3"],
+        "answer": "placeholder"
+    }, {
+        "question": "Maori question 4",
+        "context": "Maori context 4",
+        "passages": ["Maori passage 1", "Maori passage 2", "Maori passage 3"],
+        "answer": "placeholder"
+    }, {
+        "question": "Maori question 5",
+        "context": "Maori context 5",
+        "passages": ["Maori passage 1", "Maori passage 2", "Maori passage 3"],
+        "answer": "placeholder"
+    }]
+}

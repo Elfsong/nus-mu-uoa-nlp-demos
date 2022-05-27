@@ -1,22 +1,21 @@
-from flask import Blueprint, render_template, request, abort
-
-from linebot import LineBotApi, WebhookHandler
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
-from linebot.exceptions import InvalidSignatureError
+# coding: utf-8
 
 from . model import ArtQuestModel
-
 from collections import defaultdict
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+from linebot.models import MessageEvent, TextMessage, TextSendMessage
+
+from flask import Blueprint, render_template, request, abort
 
 # Flask handler
 line_bot = Blueprint('line_bot', __name__, template_folder='./templates', static_folder='./static')
 
-# Line config
+# Line config & Line Messaging API handler
 with open("./modules/line_bot/static/password", "r") as password_f:
     lines = list(password_f.readlines())
     CHANNEL_ACCESS_TOKEN = lines[0].strip().split("\t")[1]
     CHANNEL_SECRET = lines[1].strip().split("\t")[1]
-
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
@@ -24,9 +23,11 @@ handler = WebhookHandler(CHANNEL_SECRET)
 artquest_model = ArtQuestModel("Elfsong/ArtQuest")
 
 # Line session manager
+# TODO(mingzhe): fancy one -> class
 session_manager = defaultdict(list)
 
 # Line context
+# TODO(mingzhe): Carousel
 context = "This is a painting showing Rohani. The painting was made by Georgette Chen. Rohani was a student of Chen's at the Nanyang Academy of Fine Arts (NAFA). She was also a friend beyond the classroom. Here, she is vibrantly clothed in a matching red dress and headscarf. She is also wearing an accessory, a delicate gold pin in the shape of an R. Chen often drove Rohani home after school, as both lived around Siglap."
 
 # Just for testing (useless)
