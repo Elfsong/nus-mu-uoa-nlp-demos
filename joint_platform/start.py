@@ -16,4 +16,6 @@ sudo /home/nzsg_nlp_nus/miniconda3/bin/gunicorn -k gevent \
                                                  -t 360 \
                                                  -D \
                                                  start:app  
+
+pstree -ap|grep gunicorn
 """

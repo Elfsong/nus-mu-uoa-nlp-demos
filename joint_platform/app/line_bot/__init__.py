@@ -89,13 +89,16 @@ def handle_message(event):
     elif message.startswith("I am interested in"):
         topic = re.match("^I am interested in (.*)!$", message).groups(0)[0]
         topic_manager[user_id] = topic
-        print(topic)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"Ask me anything about {topic}!"))
     else:
         session_manager[user_id] += [message]
         context = topic_manager[user_id]
-        response = artquest_model.question_generation(context, session_manager[user_id])
+        response = artquest_model.question_generation(context, session_manager[user_id][-6:])
         session_manager[user_id] += [response]
+
+        # length control
+        if len(session_manager[user_id]) > 100:
+            session_manager[user_id] = session_manager[user_id][-50:]
 
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))
 
