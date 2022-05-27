@@ -11,10 +11,11 @@ from transformers import AutoTokenizer, T5ForConditionalGeneration
 
 class ArtQuestModel(object):
     def __init__(self, model_dir):
-        print("Broker init... (It may take minutes, depending on the model size)")
+        print("[ArtQuestModel] Broker init... (It may take minutes, depending on the model size)")
         self.model_dir = model_dir
         self.tokenizer = AutoTokenizer.from_pretrained("t5-large")
         self.model = T5ForConditionalGeneration.from_pretrained(self.model_dir)
+        print("[ArtQuestModel] Broker successfully initilized!")
     
     def construct_history(self, conversation_lines):
         history = [("GSDAS1: " if index % 2 else "GSDAS2: ") + line for index, line in enumerate(conversation_lines[2:])]

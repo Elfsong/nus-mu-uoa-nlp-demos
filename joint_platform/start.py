@@ -14,5 +14,6 @@ sudo /home/nzsg_nlp_nus/miniconda3/bin/gunicorn -k gevent \
                                                  --certfile /etc/letsencrypt/live/nlp-platform.online/fullchain.pem \
                                                  --keyfile /etc/letsencrypt/live/nlp-platform.online/privkey.pem \
                                                  -t 360 \
+                                                 -D \
                                                  start:app  
 """

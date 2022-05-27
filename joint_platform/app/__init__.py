@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_socketio import SocketIO
 
 socketio = SocketIO()
@@ -8,6 +8,10 @@ def create_app(debug=False):
     app = Flask(__name__)
     app.debug = debug
     app.config['SECRET_KEY'] = 'gjr39dkjn344_!67#'
+
+    @app.route('/')
+    def hello_world():
+        return redirect(url_for('homepage.index'))
 
     from .homepage import homepage as homepage_blueprint
     app.register_blueprint(homepage_blueprint, url_prefix='/homepage')
@@ -22,4 +26,6 @@ def create_app(debug=False):
     app.register_blueprint(line_bot_blueprint, url_prefix='/line_bot')
 
     socketio.init_app(app)
+
+    print("Ready to go!")
     return app
