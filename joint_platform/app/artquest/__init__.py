@@ -19,7 +19,7 @@ def index():
 
 @artquest.route('/demo')
 def demo():
-    content = get_file("modules/artquest/templates/artquest/demo.html")
+    content = get_file("app/artquest/templates/artquest/demo.html")
     return Response(content, mimetype="text/html")
 
 @socketio.on('artquest_request', namespace='/artquest')

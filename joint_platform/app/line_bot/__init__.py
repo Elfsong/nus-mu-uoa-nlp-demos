@@ -33,7 +33,7 @@ print("Got artquest_model!")
 # Line context
 # TODO(mingzhe): Carousel
 context_manager = {
-    "BBP": """Phuket's Big Buddha is one of the most important and revered landmarks on the island. The huge image sits on top of the Nakkerd Hills between Chalong and Kata and, at 45 metres tall, can be seen from as far away as Phuket Town and Karon Beach. The lofty site offers the best 360-degree views of the island, with sweeping vistas of Phuket Town, Kata, Karon, Chalong Bay and more. Reachable via a winding, 6-km road leading from Phuket's main roads, it's a must-visit island destination.""",
+    "BBP": """Big Buddha is one of the most important and revered landmarks on the island. The Buddha sits on top of the Nakkerd Hills between Chalong and Kata. The Buddha is a must-visit island destination. it is the most famous destination in Phuket.""",
     "CT": """Wat Chalong, or Chalong Temple, built at the beginning on 19th century, Its real name is Wat Chaiyathararam, but you probably won't see it on any road signs. Wat Chalong ( Chalong Temple ) is the largest of Phuket's temples, and the most visited. The most recent building on the grounds of Wat Chalong is a 60 meters tall 'Chedi' sheltering a splinter of bone from Buddha. Walls and ceilings are decorated with beautiful painting illustrating the life of Buddha, as well as many donated golden statues. Wat Chalong Chedi is built on three floors so feel free to climb all the way to the top floor terrace to get a nice bird view on the entire temple grounds. Few more steps will lead you to a glass display where the fragment of bone can be contemplated.""",
     "KB": """Karon Beach in Phuket is one of the longest beaches on the island, spanning 5 km of fine white sand overlooking the Andaman Sea. The northern end of the beach is usually deserted, making it an excellent spot for those who want the beach to themselves. The southern end, close to Kata, tends to be busier but it isn't that hard to find a nice spot for yourself."""
 }
@@ -89,10 +89,12 @@ def handle_message(event):
     elif message.startswith("I am interested in"):
         topic = re.match("^I am interested in (.*)!$", message).groups(0)[0]
         topic_manager[user_id] = topic
+        session_manager[user_id] = ["Hello", "Hello"]
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"Ask me anything about {topic}!"))
     else:
         session_manager[user_id] += [message]
         context = topic_manager[user_id]
+        print(session_manager)
         response = artquest_model.question_generation(context, session_manager[user_id][-6:])
         session_manager[user_id] += [response]
 
