@@ -19,6 +19,10 @@ def create_app(debug=False):
     @app.route('/')
     def hello_world():
         return redirect(url_for('homepage.index'))
+
+    @app.route('/nzsg-nlp')
+    def nzsg_rerouter():
+        return redirect("https://nlp-platform.online:8443/nzsg-nlp/")
     
     # Service registering
     app.logger.info("Registering services...")

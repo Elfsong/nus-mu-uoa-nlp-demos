@@ -4,4 +4,6 @@
 */__pycache__
 /common_platform/modules/line_bot/static/password
 /common_platform/reload
-common_platform/modules/line_bot/__pycache__/line_bot.cpython-39.pyc
+joint_platform/logs/access.log
+joint_platform/logs/error.log
+joint_platform/reload
