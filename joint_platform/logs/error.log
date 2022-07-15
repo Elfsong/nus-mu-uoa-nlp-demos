@@ -8787,3 +8787,420 @@ KeyError: 'Session is disconnected'
 [2022-07-15 19:06:33 +0000] [407300] [DEBUG] GET /socket.io/
 [2022-07-15 19:06:37 +0000] [407300] [INFO] Parent changed, shutting down: <Worker 407300>
 [2022-07-15 19:06:37 +0000] [407300] [INFO] Worker exiting (pid: 407300)
+[2022-07-15 19:16:35 +0000] [408934] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:443']
+  backlog: 2048
+  workers: 1
+  worker_class: gevent
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 360
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/nzsg_nlp_nus/Projects/nus-mu-uoa-nlp-demos/joint_platform
+  daemon: True
+  raw_env: []
+  pidfile: reload
+  worker_tmp_dir: None
+  user: 0
+  group: 0
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: ./logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: ./logs/error.log
+  loglevel: DEBUG
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: start:app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fe7dea5b5e0>
+  on_reload: <function OnReload.on_reload at 0x7fe7dea5b700>
+  when_ready: <function WhenReady.when_ready at 0x7fe7dea5b820>
+  pre_fork: <function Prefork.pre_fork at 0x7fe7dea5b940>
+  post_fork: <function Postfork.post_fork at 0x7fe7dea5ba60>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fe7dea5bb80>
+  worker_int: <function WorkerInt.worker_int at 0x7fe7dea5bca0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fe7dea5bdc0>
+  pre_exec: <function PreExec.pre_exec at 0x7fe7dea5bee0>
+  pre_request: <function PreRequest.pre_request at 0x7fe7dea6c040>
+  post_request: <function PostRequest.post_request at 0x7fe7dea6c0d0>
+  child_exit: <function ChildExit.child_exit at 0x7fe7dea6c1f0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fe7dea6c310>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fe7dea6c430>
+  on_exit: <function OnExit.on_exit at 0x7fe7dea6c550>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: /etc/letsencrypt/live/nlp-platform.online/privkey.pem
+  certfile: /etc/letsencrypt/live/nlp-platform.online/fullchain.pem
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2022-07-15 19:16:35 +0000] [408934] [INFO] Starting gunicorn 20.1.0
+[2022-07-15 19:16:35 +0000] [408934] [DEBUG] Arbiter booted
+[2022-07-15 19:16:35 +0000] [408934] [INFO] Listening at: https://0.0.0.0:443 (408934)
+[2022-07-15 19:16:35 +0000] [408934] [INFO] Using worker: gevent
+[2022-07-15 19:16:35 +0000] [408935] [INFO] Booting worker with pid: 408935
+[2022-07-15 19:16:35 +0000] [408934] [DEBUG] 1 workers
+[2022-07-15 19:16:36 +0000] [408935] [INFO] Registering services...
+[2022-07-15 19:16:36 +0000] [408935] [INFO] [homepage_blueprint] registed!
+[2022-07-15 19:17:14 +0000] [408935] [INFO] [artquest_blueprint] registed!
+[2022-07-15 19:18:18 +0000] [408935] [INFO] [multilingual_qa_blueprint] registed!
+[2022-07-15 19:18:18 +0000] [408935] [INFO] [line_bot_blueprint] registed!
+[2022-07-15 19:18:36 +0000] [408935] [INFO] [cure_blueprint] registed!
+[2022-07-15 19:18:36 +0000] [408935] [INFO] Ready to go!
+[2022-07-15 19:18:36 +0000] [408935] [DEBUG] Closing connection. 
+[2022-07-15 19:18:36 +0000] [408935] [DEBUG] Closing connection. 
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.css
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/thai-feature.jpeg
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.js
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/georgette-feature.jpeg
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/socratic-feature.jpeg
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/cure-feature.jpeg
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/haka-feature.jpeg
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] Ignoring EPIPE
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] Ignoring EPIPE
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.css
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/thai-feature.jpeg
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.js
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/socratic-feature.jpeg
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/cure-feature.jpeg
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/georgette-feature.jpeg
+[2022-07-15 19:19:41 +0000] [408935] [DEBUG] GET /homepage/static/haka-feature.jpeg
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/bootstrap5/bootstrap.min.css
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/jquery/jquery3.6.0.min.js
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/index.css
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/bootstrap5/bootstrap.min.js
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/jquery/socket.io.min.js
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/index.js
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/data/picture_2.jpeg
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/data/picture_1.jpeg
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/data/picture_3.jpeg
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:44 +0000] [408935] [DEBUG] GET /artquest/static/favicon.png
+[2022-07-15 19:19:45 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:19:45 +0000] [408935] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:19:46 +0000] [408935] [DEBUG] Ignoring connection reset
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /multilingual_qa/
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /multilingual_qa/static/bootstrap5/bootstrap.min.css
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /multilingual_qa/static/jquery/jquery3.6.0.min.js
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /multilingual_qa/static/index.css
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /multilingual_qa/static/jquery/socket.io.min.js
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /multilingual_qa/static/bootstrap5/bootstrap.min.js
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /multilingual_qa/static/index.js
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /multilingual_qa/static/data/englishExample.json
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /multilingual_qa/static/data/englishExample.json
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:47 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:48 +0000] [408935] [DEBUG] GET /multilingual_qa/static/data/englishExample.json
+[2022-07-15 19:19:49 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:19:49 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:51 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:53 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:55 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:57 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:19:57 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:19:57 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:20:00 +0000] [408935] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:20:00 +0000] [408935] [DEBUG] Ignoring EPIPE
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/static/index.css
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/static/bootstrap5/bootstrap.min.css
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/static/jquery/socket.io.min.js
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/static/jquery/jquery3.6.0.min.js
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/static/bootstrap5/bootstrap.min.js
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/static/index.js
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/static/data/picture_2.jpeg
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/static/data/picture_1.jpeg
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /artquest/static/data/picture_3.jpeg
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:20:01 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:20:02 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:20:02 +0000] [408935] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:20:03 +0000] [408935] [DEBUG] Ignoring EPIPE
+[2022-07-15 19:28:57 +0000] [408935] [DEBUG] Closing connection. 
+[2022-07-15 19:28:57 +0000] [408935] [DEBUG] Error processing SSL request.
+[2022-07-15 19:28:57 +0000] [408935] [DEBUG] Invalid request from ip=190.3.23.122: [SSL: HTTP_REQUEST] http request (_ssl.c:2633)
+[2022-07-15 19:28:57 +0000] [408935] [DEBUG] Failed to send error message.
+[2022-07-15 19:30:05 +0000] [408935] [DEBUG] GET /
+[2022-07-15 19:30:05 +0000] [408935] [DEBUG] GET /homepage/
+[2022-07-15 19:30:06 +0000] [408935] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.css
+[2022-07-15 19:30:06 +0000] [408935] [DEBUG] Ignoring EPIPE
+[2022-07-15 19:39:35 +0000] [408935] [DEBUG] GET /
+[2022-07-15 19:39:35 +0000] [408935] [DEBUG] GET /homepage/
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.css
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/static/thai-feature.jpeg
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.js
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/static/georgette-feature.jpeg
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/static/socratic-feature.jpeg
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/static/cure-feature.jpeg
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/static/haka-feature.jpeg
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] Ignoring connection reset
+[2022-07-15 19:42:36 +0000] [408935] [DEBUG] Ignoring EPIPE
+[2022-07-15 19:42:39 +0000] [408935] [DEBUG] GET /
+[2022-07-15 19:42:39 +0000] [408935] [DEBUG] Closing connection. 
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Ignoring connection reset
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Closing connection. 
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Error processing SSL request.
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Invalid request from ip=113.31.125.232: [SSL: NO_SHARED_CIPHER] no shared cipher (_ssl.c:2633)
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Failed to send error message.
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Closing connection. 
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Closing connection. 
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Ignoring connection reset
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Ignoring connection reset
+[2022-07-15 19:42:40 +0000] [408935] [DEBUG] Ignoring connection reset
+[2022-07-15 19:42:41 +0000] [408935] [DEBUG] Error processing SSL request.
+[2022-07-15 19:42:41 +0000] [408935] [DEBUG] Invalid request from ip=113.31.125.232: [SSL: NO_SHARED_CIPHER] no shared cipher (_ssl.c:2633)
+[2022-07-15 19:42:41 +0000] [408935] [DEBUG] Failed to send error message.
+[2022-07-15 19:42:41 +0000] [408935] [DEBUG] Error processing SSL request.
+[2022-07-15 19:42:41 +0000] [408935] [DEBUG] Invalid request from ip=113.31.125.232: [SSL: BAD_KEY_SHARE] bad key share (_ssl.c:2633)
+[2022-07-15 19:42:41 +0000] [408935] [DEBUG] Failed to send error message.
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.css
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/static/thai-feature.jpeg
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.js
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/static/georgette-feature.jpeg
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/static/cure-feature.jpeg
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/static/haka-feature.jpeg
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/static/socratic-feature.jpeg
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /favicon.ico
+[2022-07-15 19:42:50 +0000] [408935] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:42:51 +0000] [408935] [DEBUG] Ignoring EPIPE
+[2022-07-15 19:42:55 +0000] [408935] [DEBUG] GET /cure
+[2022-07-15 19:42:55 +0000] [408935] [DEBUG] GET /cure/
+[2022-07-15 19:42:56 +0000] [408935] [DEBUG] GET /cure/static/index.js
+[2022-07-15 19:42:57 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:42:57 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:42:57 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:42:57 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:02 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:43:03 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:03 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:04 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:04 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:05 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:05 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:05 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:06 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:06 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:07 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:07 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:07 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:07 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:43:10 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:43:10 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:14 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:43:17 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:22 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:43:22 +0000] [408935] [DEBUG] POST /socket.io/
+[2022-07-15 19:43:22 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:24 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:25 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:27 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:29 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:31 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:33 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:34 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:36 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:38 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:40 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:41 +0000] [408935] [DEBUG] GET /socket.io/
+[2022-07-15 19:43:42 +0000] [408935] [DEBUG] Ignoring connection reset
+[2022-07-15 19:43:43 +0000] [408935] [DEBUG] Ignoring EPIPE
+[2022-07-15 19:45:59 +0000] [408935] [INFO] Parent changed, shutting down: <Worker 408935>
+[2022-07-15 19:45:59 +0000] [408935] [INFO] Worker exiting (pid: 408935)
+[2022-07-15 19:46:22 +0000] [409530] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:443']
+  backlog: 2048
+  workers: 1
+  worker_class: gevent
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 360
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/nzsg_nlp_nus/Projects/nus-mu-uoa-nlp-demos/joint_platform
+  daemon: True
+  raw_env: []
+  pidfile: reload
+  worker_tmp_dir: None
+  user: 0
+  group: 0
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: ./logs/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: ./logs/error.log
+  loglevel: DEBUG
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: start:app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7feea01a75e0>
+  on_reload: <function OnReload.on_reload at 0x7feea01a7700>
+  when_ready: <function WhenReady.when_ready at 0x7feea01a7820>
+  pre_fork: <function Prefork.pre_fork at 0x7feea01a7940>
+  post_fork: <function Postfork.post_fork at 0x7feea01a7a60>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7feea01a7b80>
+  worker_int: <function WorkerInt.worker_int at 0x7feea01a7ca0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7feea01a7dc0>
+  pre_exec: <function PreExec.pre_exec at 0x7feea01a7ee0>
+  pre_request: <function PreRequest.pre_request at 0x7feea01b8040>
+  post_request: <function PostRequest.post_request at 0x7feea01b80d0>
+  child_exit: <function ChildExit.child_exit at 0x7feea01b81f0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7feea01b8310>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7feea01b8430>
+  on_exit: <function OnExit.on_exit at 0x7feea01b8550>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: /etc/letsencrypt/live/nlp-platform.online/privkey.pem
+  certfile: /etc/letsencrypt/live/nlp-platform.online/fullchain.pem
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2022-07-15 19:46:22 +0000] [409530] [INFO] Starting gunicorn 20.1.0
+[2022-07-15 19:46:22 +0000] [409530] [DEBUG] Arbiter booted
+[2022-07-15 19:46:22 +0000] [409530] [INFO] Listening at: https://0.0.0.0:443 (409530)
+[2022-07-15 19:46:22 +0000] [409530] [INFO] Using worker: gevent
+[2022-07-15 19:46:22 +0000] [409533] [INFO] Booting worker with pid: 409533
+[2022-07-15 19:46:22 +0000] [409530] [DEBUG] 1 workers
+[2022-07-15 19:46:23 +0000] [409533] [INFO] Registering services...
+[2022-07-15 19:46:23 +0000] [409533] [INFO] [homepage_blueprint] registed!
+[2022-07-15 19:47:01 +0000] [409533] [INFO] [artquest_blueprint] registed!
+[2022-07-15 19:48:05 +0000] [409533] [INFO] [multilingual_qa_blueprint] registed!
+[2022-07-15 19:48:05 +0000] [409533] [INFO] [line_bot_blueprint] registed!
+[2022-07-15 19:48:35 +0000] [409533] [INFO] [cure_blueprint] registed!
+[2022-07-15 19:48:35 +0000] [409533] [INFO] Ready to go!
+[2022-07-15 19:48:53 +0000] [409533] [DEBUG] GET /homepage/
+[2022-07-15 19:48:53 +0000] [409533] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.css
+[2022-07-15 19:48:53 +0000] [409533] [DEBUG] GET /homepage/static/thai-feature.jpeg
+[2022-07-15 19:48:53 +0000] [409533] [DEBUG] GET /homepage/static/socratic-feature.jpeg
+[2022-07-15 19:48:53 +0000] [409533] [DEBUG] GET /homepage/static/cure-feature.jpeg
+[2022-07-15 19:48:53 +0000] [409533] [DEBUG] GET /homepage/static/bootstrap5/bootstrap.min.js
+[2022-07-15 19:48:53 +0000] [409533] [DEBUG] GET /homepage/static/georgette-feature.jpeg
+[2022-07-15 19:48:53 +0000] [409533] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:48:53 +0000] [409533] [DEBUG] GET /homepage/static/haka-feature.jpeg
+[2022-07-15 19:48:54 +0000] [409533] [DEBUG] GET /homepage/static/forrest_gump.m4a
+[2022-07-15 19:48:54 +0000] [409533] [DEBUG] Ignoring connection reset
+[2022-07-15 19:48:54 +0000] [409533] [DEBUG] Ignoring connection reset
+[2022-07-15 19:48:55 +0000] [409533] [DEBUG] GET /cure/
+[2022-07-15 19:48:55 +0000] [409533] [DEBUG] GET /cure/static/index.js
+[2022-07-15 19:48:56 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:48:56 +0000] [409533] [DEBUG] POST /socket.io/
+[2022-07-15 19:48:56 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:48:56 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:48:58 +0000] [409533] [DEBUG] POST /socket.io/
+[2022-07-15 19:48:59 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:48:59 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:00 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:00 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:01 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:01 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:01 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:01 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:02 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:02 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:02 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:03 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:03 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:03 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:03 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:03 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:03 +0000] [409533] [DEBUG] POST /socket.io/
+[2022-07-15 19:49:21 +0000] [409533] [DEBUG] POST /socket.io/
+[2022-07-15 19:49:21 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:49:46 +0000] [409533] [DEBUG] POST /socket.io/
+[2022-07-15 19:49:46 +0000] [409533] [DEBUG] GET /socket.io/
+[2022-07-15 19:50:11 +0000] [409533] [DEBUG] POST /socket.io/
+[2022-07-15 19:50:11 +0000] [409533] [DEBUG] GET /socket.io/
