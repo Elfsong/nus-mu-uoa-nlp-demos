@@ -10,3 +10,8 @@ joint_platform/reload
 joint_platform/reload
 joint_platform/app/__pycache__/__init__.cpython-39.pyc
 joint_platform/app/__pycache__/__init__.cpython-39.pyc
+joint_platform/app/cure/static/data/test/
+joint_platform/app/cure/static/model/pytorch_model.bin
+joint_platform/app/line_bot/openai.ipynb
+joint_platform/logs/access.log
+joint_platform/logs/error.log
