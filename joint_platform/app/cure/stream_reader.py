@@ -5,8 +5,6 @@
 # Email: mingzhe@nus.edu.sg
 
 import os
-import sys
-import time
 import json
 import zipfile
 from threading import Thread
@@ -121,10 +119,10 @@ class StreamReader(object):
     def __init__(self, output_dir, socketio, client_id, step_1_callback):
         # Tokens
         # TODO(mingzhe): Don't share it on GitHub, using Shell Variables.
-        self.consumer_key = "ZD492npWWx141lOogMTlcA"
-        self.consumer_secret = "fuVo0MX0Y6Xkoef0LFLBvFd4rfFOG2HdgqF1CCleeFs"
-        self.access_token = "1702508120-IziXQvUgkd84LivqBUaLRRoXii6oWbVumdQaITf"
-        self.access_token_secret = "Sjv640C1TRY2SDZ5gAzhfvV1kzgXuodYwQf6rV9c"
+        self.consumer_key = os.getenv("consumer_key")
+        self.consumer_secret = os.getenv("consumer_secret")
+        self.access_token = os.getenv("access_token")
+        self.access_token_secret = os.getenv("access_token_secret")
 
         # Create the listener
         self.output_dir = output_dir
