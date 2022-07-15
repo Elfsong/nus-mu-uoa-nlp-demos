@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+    <title>CURE</title>
+</head>
+
+<body>
+    <div class="container">
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="grid">
+            <!-- Indicator -->
+            <!-- <div class="row">
+                <div class="cell">
+                    <div>1</div>
+                </div>
+                <div class="cell">
+                    <div>2</div>
+                </div>
+                <div class="cell">
+                    <div>3</div>
+                </div>
+                <div class="cell">
+                    <div>4</div>
+                </div>
+                <div class="cell">
+                    <div>5</div>
+                </div>
+                <div class="cell">
+                    <div>6</div>
+                </div>
+                <div class="cell">
+                    <div>7</div>
+                </div>
+                <div class="cell">
+                    <div>8</div>
+                </div>
+                <div class="cell">
+                    <div>9</div>
+                </div>
+                <div class="cell">
+                    <div>10</div>
+                </div>
+                <div class="cell">
+                    <div>11</div>
+                </div>
+                <div class="cell">
+                    <div>12</div>
+                </div>
+            </div> -->
+
+            <!-- Title -->
+            <div class="row">
+                <div class="cell-3 offset-1">
+                    <h1>CURE Demo</h1>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="row">
+                <div class="cell-7 offset-2">
+                    <input id="keywords" type="text" data-role="taginput" value="diabetes,diabetic,#diabetes,#diabetic,#diabetestype,#diabetesawareness,#insulin,hello">
+                </div>
+                <div class="cell-1">
+                    <button id="retrieve-button" class="button" style="width: 100%">Retrieve</button>
+                </div>
+            </div>
+            
+            <!-- Stepper -->
+            <div class="row">
+                <div class="cell-8 offset-2">
+                    <div id="stepper" data-role="stepper" data-steps="4" data-step="1"></div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="row step-0">
+                <div class="cell-8 offset-2">
+                    <div style="height:360px">
+                        <h2>Instructions</h2>
+                        <p>
+                            <h5>Step 1. Scraping tweets from Twitter stream</h3>
+                            <div class="remark">
+                                python3 ./backend/stream_reader.py
+                            </div>
+                        </p>
+                        <p>
+                            <h5>Step 2. Pre-processing retrieved tweets</h3>
+                            <div class="remark">
+                                python3 ./backend/stream_reader.py
+                            </div>
+                        </p>
+                        <p>
+                            <h5>Step 3. Pre-processing retrieved tweets</h3>
+                            <div class="remark">
+                                python3 ./backend/stream_reader.py
+                            </div>
+                        </p>
+                        <p>
+                            <h5>Step 4. Check-worthiness Classification</h3>
+                            <div class="remark">
+                                python3 ./backend/stream_reader.py
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="row step-1 d-none">
+                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
+                    <h2>Step 1: Scraping tweets from Twitter stream</h2>
+                </div>
+            </div>
+
+            <div class="row step-1 d-none">
+                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
+                    <ul id="tweet-list" data-role="listview"
+                        data-view="table"
+                        data-select-node="true"
+                        data-structure='{"date": true}'>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row step-1 d-none">
+                <div class="cell-2 offset-5">
+                    <button id="next-step-1-button" class="button primary" style="width:100%">Next Step</button>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="row step-2 d-none">
+                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
+                    <h2>Step 2: Pre-processing retrieved tweets</h2>
+                </div>
+            </div>
+
+            <div class="row step-2 d-none">
+                <div class="cell-8 offset-2">
+                    <div class="remark">
+                        <p>tp = TweetProcessor()</p>
+                        <p>tp.preprocess("alzheimers_tweets", "2022-07-12")</p>
+                        <p>tp.convert("alzheimers_tweets", "2022-07-12")</p>
+
+                        <p>tc = TweetsCluster()</p>
+                        <p>tc.cluster(client_id, "2022-07-12")</p>
+                        <p>tc.filter(client_id, "2022-07-12")</p>
+                
+                        <p>cr = ClusterRender()</p>
+                        <p>cr.render(client_id, "2022-07-12")</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row step-2 d-none">
+                <div class="cell-2 offset-5">
+                    <button id="exec-step-2-button" class="button success" style="width:100%">Execute</button>
+                </div>
+            </div>
+
+            <div class="row step-2-next d-none">
+                <div class="cell-2 offset-5">
+                    <button id="next-step-2-button" class="button primary" style="width:100%">Next Step</button>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="row step-3 d-none">
+                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
+                    <h2>Step 3: Clustering and Flitering Tweets</h2>
+                </div>
+            </div>
+
+            <div class="row step-3 d-none">
+                <div class="cell-8 offset-2">
+                    <div class="chart-container">
+                        <canvas id="myChart" height="0px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row step-3 d-none">
+                <div class="cell-2 offset-5">
+                    <button id="exec-step-3-button" class="button success" style="width:100%">Execute</button>
+                </div>
+            </div>
+
+            <div class="row step-3-next d-none">
+                <div class="cell-2 offset-5">
+                    <button id="next-step-3-button" class="button primary" style="width:100%">Next Step</button>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="row step-4 d-none">
+                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
+                    <h2>Step 4: Classification of Check-worthiness</h2>
+                </div>
+            </div>
+
+            <div class="row step-4 d-none">
+                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
+                    <ul id="check-worthy-list" data-role="listview"
+                        data-view="table"
+                        data-select-node="true"
+                        data-structure='{"date": true}'>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row step-4 d-none">
+                <div class="cell-2 offset-5">
+                    <button id="exec-step-4-button" class="button success" style="width:100%">Execute</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/danmaku@2.0.4/dist/danmaku.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="./static/index.js"></script>
+</body>
+
+</html>

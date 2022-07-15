@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for
 from flask_socketio import SocketIO
 import logging
 
-socketio = SocketIO()
+socketio = SocketIO(async_mode="threading")
 
 def create_app(debug=False):
     # Create an application
@@ -17,7 +17,7 @@ def create_app(debug=False):
 
     # App route
     @app.route('/')
-    def hello_world():
+    def index():
         return redirect(url_for('homepage.index'))
 
     @app.route('/nzsg-nlp')
@@ -26,7 +26,7 @@ def create_app(debug=False):
     
     # Service registering
     app.logger.info("Registering services...")
-
+    
     from .homepage import homepage as homepage_blueprint
     app.register_blueprint(homepage_blueprint, url_prefix='/homepage')
     app.logger.info("[homepage_blueprint] registed!")
@@ -43,8 +43,12 @@ def create_app(debug=False):
     app.register_blueprint(line_bot_blueprint, url_prefix='/line_bot')
     app.logger.info("[line_bot_blueprint] registed!")
 
+    from .cure import cure as cure_blueprint
+    app.register_blueprint(cure_blueprint, url_prefix='/cure')
+    app.logger.info("[cure_blueprint] registed!")
+
     # Init socketio
-    socketio.init_app(app)
+    socketio.init_app(app, async_mode='threading')
 
     app.logger.info("Ready to go!")
     return app
