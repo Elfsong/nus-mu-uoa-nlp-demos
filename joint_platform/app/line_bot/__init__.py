@@ -1,4 +1,5 @@
 # coding: utf-8
+from distutils.sysconfig import customize_compiler
 import re
 import os
 import json
@@ -10,10 +11,6 @@ from linebot.models import MessageEvent, TextMessage, CarouselTemplate, Carousel
 
 from flask import Blueprint, render_template, request, abort
 
-# Get artquest model
-print("Requiring artquest_model...")
-from .. artquest import artquest_model
-print("Got artquest_model!")
 
 # Flask handler
 line_bot = Blueprint('line_bot', __name__, template_folder='./templates', static_folder='./static')
@@ -29,30 +26,37 @@ handler = WebhookHandler(CHANNEL_SECRET)
 # Line managers
 # TODO(mingzhe): class them
 session_manager = defaultdict(list)
-
 topic_manager = defaultdict(str)
-
-power_manager = defaultdict(int)
-
-
+customize_context_manager = defaultdict(str)
 context_manager = {
-    "BBP": """Big Buddha is one of the most important and revered landmarks on the island. The Buddha sits on top of the Nakkerd Hills between Chalong and Kata. The Buddha is a must-visit island destination. it is the most famous destination in Phuket.""",
-    "CT": """Wat Chalong, or Chalong Temple, built at the beginning on 19th century, Its real name is Wat Chaiyathararam, but you probably won't see it on any road signs. Wat Chalong ( Chalong Temple ) is the largest of Phuket's temples, and the most visited. The most recent building on the grounds of Wat Chalong is a 60 meters tall 'Chedi' sheltering a splinter of bone from Buddha. Walls and ceilings are decorated with beautiful painting illustrating the life of Buddha, as well as many donated golden statues. Wat Chalong Chedi is built on three floors so feel free to climb all the way to the top floor terrace to get a nice bird view on the entire temple grounds. Few more steps will lead you to a glass display where the fragment of bone can be contemplated.""",
-    "KB": """Karon Beach in Phuket is one of the longest beaches on the island, spanning 5 km of fine white sand overlooking the Andaman Sea. The northern end of the beach is usually deserted, making it an excellent spot for those who want the beach to themselves. The southern end, close to Kata, tends to be busier but it isn't that hard to find a nice spot for yourself."""
+    "Big Buddha Phuket":  """I am a Phuket tour guide. I know that Phuket Big Buddha, or The Great Buddha of Phuket, is a seated Maravija Buddha statue in Phuket, Thailand. The official name is Phra Phutta Ming Mongkol Eknakiri, shortened to Ming Mongkol Buddha. Sitting atop Nakkerd Hill (also spelt Nagakerd) near Chalong, construction began in 2004. It is the third-tallest statue in Thailand behind only the Great Buddha of Thailand and Luangpho Yai. The Buddha statue depicts Gautama in a sitting position and is 45 metres tall and 25.45 metres wide. It is made of concrete and covered with Burmese white marble. Facing towards Ao Chalong Bay the statue is the main Buddha of the Wat Kitthi Sankaram temple (Wat Kata). The statue was declared the \"Buddhist Treasure of Phuket\" by Somdet Phra Yanasangwon, the Supreme Patriarch of Thailand, in 2008. The statue cost 30 million Baht, sourced primarily from donations.""",
+    "CT":   """Wat Chalong, or Chalong Temple, built at the beginning on 19th century, Its real name is Wat Chaiyathararam, but you probably won't see it on any road signs. Wat Chalong ( Chalong Temple ) is the largest of Phuket's temples, and the most visited. The most recent building on the grounds of Wat Chalong is a 60 meters tall 'Chedi' sheltering a splinter of bone from Buddha. Walls and ceilings are decorated with beautiful painting illustrating the life of Buddha, as well as many donated golden statues. Wat Chalong Chedi is built on three floors so feel free to climb all the way to the top floor terrace to get a nice bird view on the entire temple grounds. Few more steps will lead you to a glass display where the fragment of bone can be contemplated.""",
+    "IDS":   """I am a IDS PhD student. The Institute of Data Science (IDS) is the focal point for all data science research, education, and related activities at National University of Singapore (NUS).  Established in May 2016, IDS coordinates and supports data science research initiatives across NUS.  IDS taps into NUS’ transdisciplinary strengths in being a comprehensive university, with its own business school, medical school, affiliated acute tertiary hospital, engineering faculty, arts and social science faculty, etc. This is a massive advantage above many of the existing institutes in the world. The institute seeks to address challenging impactful real-world problems relevant to Singapore and Asia that are not present/less common in these Western world. By collaborating with public agencies and industry partners such as Grab, SingHealth, Cisco, DSTA and EZ Link, IDS aims to push the boundary of data science through transdisciplinary upstream research, and translate into real-life applications that harness the richness of data for our smart nation. For more information on IDS, please visit http://ids.nus.edu.sg/"""
 }
 
 # OpenAI handler
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def openai_generate(text):
+def openai_generate(context, session):
     try:
-        template = f"I am a Phuket tour guide. I know that Phuket Big Buddha, or The Great Buddha of Phuket, is a seated Maravija Buddha statue in Phuket, Thailand. The official name is Phra Phutta Ming Mongkol Eknakiri, shortened to Ming Mongkol Buddha. Sitting atop Nakkerd Hill (also spelt Nagakerd) near Chalong, construction began in 2004. It is the third-tallest statue in Thailand behind only the Great Buddha of Thailand and Luangpho Yai. The Buddha statue depicts Gautama in a sitting position and is 45 metres tall and 25.45 metres wide. It is made of concrete and covered with Burmese white marble. Facing towards Ao Chalong Bay the statue is the main Buddha of the Wat Kitthi Sankaram temple (Wat Kata). The statue was declared the \"Buddhist Treasure of Phuket\" by Somdet Phra Yanasangwon, the Supreme Patriarch of Thailand, in 2008. The statue cost 30 million Baht, sourced primarily from donations.\n\nQ: {text}"
-        response = openai.Completion.create(model="text-davinci-002", prompt=template, temperature=0.6, max_tokens=128)
-        answer = response.choices[0].text.strip()
-        answer = answer[3:] if answer.startswith("A: ") else answer
-        return answer
+        session_text = "\n".join(session)
+        input_text = context + "\n\n" + session_text
+        print("=" * 80)
+        print(input_text)
+        response = openai.Completion.create(model="text-davinci-002", prompt=input_text, temperature=0.6, max_tokens=128)
+        # print("original output:", response)
+
+        answer = "Sorry, I have a problem."
+        if response.choices[0].finish_reason == "length":
+            answer = ".".join(response.choices[0].text.split(".")[:-2]) + "."
+        else:
+            answer = response.choices[0].text.strip().split("\n")[0]
+        answer = answer.strip()
+        answer = answer[2:] if answer.startswith("B:") else answer
+
+        return answer.strip()
     except Exception:
-        return "Sorry, I don't know."
+        return "Sorry, I have a problem. Call Mingzhe to fix me."
 
 # MessageEvent handler
 @handler.add(MessageEvent, message=TextMessage)
@@ -72,7 +76,7 @@ def handle_message(event):
                         actions=[
                             MessageAction(
                                 label='Explore',
-                                text='I am interested in Big Buddha Phuket!'
+                                text='[Topic Selected] Big Buddha Phuket'
                             )
                         ]
                     ),
@@ -83,18 +87,29 @@ def handle_message(event):
                         actions=[
                             MessageAction(
                                 label='Explore',
-                                text='I am interested in Chaithararam Temple!'
+                                text='[Topic Selected] Chaithararam Temple'
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url='https://nlp-platform.online/line_bot/static/images/KB.jpeg',
-                        title='Karon Beach',
-                        text='The longest beaches on the island.',
+                        thumbnail_image_url='https://nlp-platform.online/line_bot/static/images/IDS.jpeg',
+                        title='NUS IDS',
+                        text='Institute of Data Science',
                         actions=[
                             MessageAction(
                                 label='Explore',
-                                text='I am interested in Karon Beach!'
+                                text='[Topic Selected] IDS'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://nlp-platform.online/line_bot/static/images/FREE.jpeg',
+                        title='Custom Input',
+                        text='Type anything you want with a prompt [CT]',
+                        actions=[
+                            MessageAction(
+                                label='Explore',
+                                text='[Topic Selected] Your Custom Input'
                             )
                         ]
                     )
@@ -102,37 +117,32 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, carousel_template_message)
-    elif message.startswith("I am interested in"):
-        topic = re.match("^I am interested in (.*)!$", message).groups(0)[0]
+    elif message.startswith("[Topic Selected]"):
+        topic = re.match("^\[Topic Selected\] (.*)$", message).groups(0)[0].strip()
         topic_manager[user_id] = topic
-        session_manager[user_id] = ["Hello", "Hello"]
+        session_manager[user_id] = []
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"Ask me anything about {topic}!"))
-    elif message == "I choose the form of Gundam!":
-        if user_id not in power_manager:
-            power_manager[user_id] = 5
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"[Ultimate mode enabled] You have five chances to talk with me. For now, only the Big Buddha context available."))
-        else:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"[Ultimate mode disabled] You ran out of the five tries. The model deployment is costly, sorry lah:)"))
-    elif message == "Extra Life":
-        power_manager[user_id] = 5
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"[Ultimate mode enabled] Ok, five more."))
+    elif message.startswith("[CT]"):
+        ct = re.match("^\[CT\] (.*)$", message).groups(0)[0].strip()
+        customize_context_manager[user_id] = ct
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"Input recorded!"))
     else:
-        session_manager[user_id] += [message]
-        context = topic_manager[user_id]
+        try:
+            session_manager[user_id] += ["A:" + message.strip()]
+            context_topic = topic_manager[user_id]
+            context = context_manager[context_topic] if context_topic != "Your Custom Input" else customize_context_manager[user_id]
+            response = openai_generate(context, session_manager[user_id])
+            session_manager[user_id] += ["B:" + response]
 
-        if power_manager[user_id]:
-            power_manager[user_id] -= 1
-            response = openai_generate(message.strip())
-        else:
-            response = artquest_model.question_generation(context, session_manager[user_id][-6:])
+            # Length control
+            session_manager[user_id] = session_manager[user_id][-5:]
+            
+            # Reply message 
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))
+        except Exception as e:
+            print(e)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="I have a problem (maybe your problem), call mingzhe to fix me."))
 
-        session_manager[user_id] += [response]
-
-        # length control
-        if len(session_manager[user_id]) > 100:
-            session_manager[user_id] = session_manager[user_id][-50:]
-
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))
 
 # Callback handler
 @line_bot.route('/callback', methods=['POST'])
