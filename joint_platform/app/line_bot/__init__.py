@@ -30,7 +30,7 @@ topic_manager = defaultdict(str)
 customize_context_manager = defaultdict(str)
 context_manager = {
     "Big Buddha Phuket":  """I am a Phuket tour guide. I know that Phuket Big Buddha, or The Great Buddha of Phuket, is a seated Maravija Buddha statue in Phuket, Thailand. The official name is Phra Phutta Ming Mongkol Eknakiri, shortened to Ming Mongkol Buddha. Sitting atop Nakkerd Hill (also spelt Nagakerd) near Chalong, construction began in 2004. It is the third-tallest statue in Thailand behind only the Great Buddha of Thailand and Luangpho Yai. The Buddha statue depicts Gautama in a sitting position and is 45 metres tall and 25.45 metres wide. It is made of concrete and covered with Burmese white marble. Facing towards Ao Chalong Bay the statue is the main Buddha of the Wat Kitthi Sankaram temple (Wat Kata). The statue was declared the \"Buddhist Treasure of Phuket\" by Somdet Phra Yanasangwon, the Supreme Patriarch of Thailand, in 2008. The statue cost 30 million Baht, sourced primarily from donations.""",
-    "CT":   """Wat Chalong, or Chalong Temple, built at the beginning on 19th century, Its real name is Wat Chaiyathararam, but you probably won't see it on any road signs. Wat Chalong ( Chalong Temple ) is the largest of Phuket's temples, and the most visited. The most recent building on the grounds of Wat Chalong is a 60 meters tall 'Chedi' sheltering a splinter of bone from Buddha. Walls and ceilings are decorated with beautiful painting illustrating the life of Buddha, as well as many donated golden statues. Wat Chalong Chedi is built on three floors so feel free to climb all the way to the top floor terrace to get a nice bird view on the entire temple grounds. Few more steps will lead you to a glass display where the fragment of bone can be contemplated.""",
+    "Chaithararam Temple":   """Wat Chalong, or Chalong Temple, built at the beginning on 19th century, Its real name is Wat Chaiyathararam, but you probably won't see it on any road signs. Wat Chalong ( Chalong Temple ) is the largest of Phuket's temples, and the most visited. The most recent building on the grounds of Wat Chalong is a 60 meters tall 'Chedi' sheltering a splinter of bone from Buddha. Walls and ceilings are decorated with beautiful painting illustrating the life of Buddha, as well as many donated golden statues. Wat Chalong Chedi is built on three floors so feel free to climb all the way to the top floor terrace to get a nice bird view on the entire temple grounds. Few more steps will lead you to a glass display where the fragment of bone can be contemplated.""",
     "IDS":   """I am a IDS PhD student. The Institute of Data Science (IDS) is the focal point for all data science research, education, and related activities at National University of Singapore (NUS).  Established in May 2016, IDS coordinates and supports data science research initiatives across NUS.  IDS taps into NUS’ transdisciplinary strengths in being a comprehensive university, with its own business school, medical school, affiliated acute tertiary hospital, engineering faculty, arts and social science faculty, etc. This is a massive advantage above many of the existing institutes in the world. The institute seeks to address challenging impactful real-world problems relevant to Singapore and Asia that are not present/less common in these Western world. By collaborating with public agencies and industry partners such as Grab, SingHealth, Cisco, DSTA and EZ Link, IDS aims to push the boundary of data science through transdisciplinary upstream research, and translate into real-life applications that harness the richness of data for our smart nation. For more information on IDS, please visit http://ids.nus.edu.sg/"""
 }
 
@@ -42,7 +42,7 @@ def openai_generate(context, session):
         session_text = "\n".join(session)
         input_text = context + "\n\n" + session_text
         print("=" * 80)
-        print(input_text)
+        print(f"Input: {input_text}")
         response = openai.Completion.create(model="text-davinci-002", prompt=input_text, temperature=0.6, max_tokens=128)
         # print("original output:", response)
 
@@ -77,6 +77,10 @@ def handle_message(event):
                             MessageAction(
                                 label='Explore',
                                 text='[Topic Selected] Big Buddha Phuket'
+                            ),
+                            MessageAction(
+                                label='Context',
+                                text='[Context] ' + f"https://nlp-platform.online/line_bot/context?uid={user_id}&topic=Big%20Buddha%20Phuket"
                             )
                         ]
                     ),
@@ -88,6 +92,10 @@ def handle_message(event):
                             MessageAction(
                                 label='Explore',
                                 text='[Topic Selected] Chaithararam Temple'
+                            ),
+                            MessageAction(
+                                label='Context',
+                                text='[Context] ' + f"https://nlp-platform.online/line_bot/context?uid={user_id}&topic=Chaithararam%20Temple"
                             )
                         ]
                     ),
@@ -99,6 +107,10 @@ def handle_message(event):
                             MessageAction(
                                 label='Explore',
                                 text='[Topic Selected] IDS'
+                            ),
+                            MessageAction(
+                                label='Context',
+                                text='[Context] ' + f"https://nlp-platform.online/line_bot/context?uid={user_id}&topic=IDS"
                             )
                         ]
                     ),
@@ -110,6 +122,10 @@ def handle_message(event):
                             MessageAction(
                                 label='Explore',
                                 text='[Topic Selected] Your Custom Input'
+                            ),
+                            MessageAction(
+                                label='Context',
+                                text='[Context] ' + f"https://nlp-platform.online/line_bot/context?uid={user_id}&topic=Your%20Custom%20Input"
                             )
                         ]
                     )
@@ -121,11 +137,18 @@ def handle_message(event):
         topic = re.match("^\[Topic Selected\] (.*)$", message).groups(0)[0].strip()
         topic_manager[user_id] = topic
         session_manager[user_id] = []
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"Ask me anything about {topic}!"))
+        response = f"Ask me anything about {topic}!"
+
+        if topic_manager[user_id] == "Your Custom Input":
+            response += "Type anything you want with a prompt [CT]"
+            
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))
     elif message.startswith("[CT]"):
         ct = re.match("^\[CT\] (.*)$", message).groups(0)[0].strip()
         customize_context_manager[user_id] = ct
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"Input recorded!"))
+    elif message.startswith("[Context]"):
+        pass
     else:
         try:
             session_manager[user_id] += ["A:" + message.strip()]
@@ -142,6 +165,21 @@ def handle_message(event):
         except Exception as e:
             print(e)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text="I have a problem (maybe your problem), call mingzhe to fix me."))
+
+@line_bot.route("/context", methods=['GET'])
+def context():
+    context_str = "None"
+    try:
+        topic = request.args["topic"]
+        user_id = request.args["uid"]
+        if topic == "Your Custom Input":
+            context_str = customize_context_manager[user_id]
+        else:
+            context_str = context_manager[topic]
+    except:
+        print("Context component error.")
+
+    return f"<h3>{context_str}</h3>"
 
 
 # Callback handler
