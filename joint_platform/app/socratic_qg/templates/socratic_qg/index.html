@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <title>Scotatic QG</title>
+    </head>
+
+    <body>
+        <div class="container-fluid d-flex flex-column vh-100">
+            <!-- Title -->
+            <div class="container p-5" style="background: #00467f;color: white; max-width: 100%; font-weight: 500;">
+                <h2>Scotatic QG Demo</h2>
+                <p>I know you won't believe me, but the highest form of human excellence is to question oneself and others.</p>
+            </div>
+
+            <!-- Input -->
+            <div class="row mt-5 justify-content-center">
+                <div class="col-10">
+                    <textarea class="form-control" id="text-input" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="row mt-4 justify-content-center">
+                <div class="col-1">
+                    <button type="button" class="btn btn-primary" id="submit-button">Generate</button>
+                </div>
+            </div>
+
+            <div id="result-list" class="row flex-grow-1 justify-content-center d-none">
+                <div class="col-10">
+                    <h3 id="alternative_perspectives_viewpoints-item">Alternative Perspectives / Viewpoints</h3>
+                    <h3 id="implications_consequences-item">Implications Consequences</h3>
+                    <h3 id="clarity-item">Clarity</h3>
+                    <h3 id="assumptions-item">Assumptions</h3>
+                    <h3 id="reasons_evidence-item">Reasons Evidence</h3>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+        <script src="./static/index.js"></script>
+    </body>
+</html>

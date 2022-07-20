@@ -47,6 +47,10 @@ def create_app(debug=False):
     app.register_blueprint(cure_blueprint, url_prefix='/cure')
     app.logger.info("[cure_blueprint] registed!")
 
+    from .socratic_qg import socratic_qg as socratic_qg_blueprint
+    app.register_blueprint(socratic_qg_blueprint, url_prefix='/socratic_qg')
+    app.logger.info("[socratic_qg_blueprint] registed!")
+
     # Init socketio
     socketio.init_app(app, async_mode='threading')
 

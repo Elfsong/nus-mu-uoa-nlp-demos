@@ -1,3 +1,9 @@
+# coding: utf-8
+
+# Author: Mingzhe Du
+# Date: 2022-07-08
+# Email: mingzhe@nus.edu.sg
+
 from flask import Blueprint, render_template, request
 from flask import current_app
 from flask_socketio import emit
