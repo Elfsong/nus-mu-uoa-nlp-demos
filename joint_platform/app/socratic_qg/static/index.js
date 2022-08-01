@@ -12,6 +12,7 @@
         $(".list-group").each(function() {$(this).empty();});
         $("#progress-bar").attr("aria-valuenow", 0);
         $("#progress-bar").width("0%");
+        $(".spinner-border").removeClass('d-none');
 
         // Get input text
         var context = $("#text-input").val();
@@ -32,6 +33,9 @@
 
         // Update results
         var parent_node = $("#" + data["topic"] + "-list");
+
+        // Hidden spinners
+        $("#" + data["topic"] + "-spinner").addClass('d-none');
 
         $.each(data["results"], function(index, item) {
             parent_node.append("<li class=\"list-group-item\">" + item + "</li>");
