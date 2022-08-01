@@ -22,11 +22,14 @@ def index():
 @socketio.on('generate', namespace='/socratic_qg')
 def on_generate(data):
     client_id = request.sid
-    input_context = data["context"]
+    context = data["context"]
 
-    result = qg_model.generate_all_labels(input_context)
+    total_count, processed_count = len(qg_model.labels), 0
+    
+    for label, repetition_penalty, temperature in zip(qg_model.labels, qg_model.repetition_penalties, qg_model.temperatures):
+        results = qg_model.generate(label=label, context=context, sample_size=qg_model.sample_size, repetition_penalty=repetition_penalty, temperature = temperature, top_p=qg_model.top_p, top_k=qg_model.top_k)
+        processed_count += 1
+        emit('update', {"topic": label, "results": results, "total": total_count, "current": processed_count}, broadcast=False, namespace="/socratic_qg", room=client_id)
+        socketio.sleep(1)
 
-    for label in result:
-        for question in result[label]:
-            emit('update', {"topic": label, "question": question}, broadcast=False, namespace="/socratic_qg", room=client_id)
         

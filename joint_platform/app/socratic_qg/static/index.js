@@ -8,20 +8,34 @@
 
     // Events
     $('#submit-button').click(function () {
+        // Clear history
+        $(".list-group").each(function() {$(this).empty();});
+        $("#progress-bar").attr("aria-valuenow", 0);
+        $("#progress-bar").width("0%");
+
+        // Get input text
         var context = $("#text-input").val();
 
+        // Emit text
         window.socket.emit("generate", {
             "context": context
         });
-        $("#result-list").removeClass("d-none");
     });
 
     window.socket.on('update', function(data) {
         console.log(data);
-        topic = data["topic"];
-        question = data["question"];
-        var parent_node = $("#" + topic + "-item");
-        parent_node.after("<p>" + question + "</p>");
+
+        // Update progress bar
+        var precent = Math.round(data["current"] / data["total"] * 100);
+        $("#progress-bar").attr("aria-valuenow", precent);
+        $("#progress-bar").width(precent + "%");
+
+        // Update results
+        var parent_node = $("#" + data["topic"] + "-list");
+
+        $.each(data["results"], function(index, item) {
+            parent_node.append("<li class=\"list-group-item\">" + item + "</li>");
+        });
     });
     
 })()

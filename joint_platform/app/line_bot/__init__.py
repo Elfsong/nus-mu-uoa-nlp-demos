@@ -37,22 +37,25 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def openai_generate(context, session):
     try:
+        # Generate Input
         session_text = "\n".join(session)
-        input_text = context + "\n\n" + session_text
-        print("=" * 80)
-        print(f"Input: {input_text}")
-        response = openai.Completion.create(model="text-davinci-002", prompt=input_text, temperature=0.6, max_tokens=128)
+        input_text = f"{context}\n\n{session_text}\nElf:"
+
+        response = openai.Completion.create(model="text-davinci-002", prompt=input_text, temperature=0.6, max_tokens=188)
+        # print("=" * 80)
+        # print(input_text)
         # print("original output:", response)
 
-        answer = "Sorry, I have a problem."
+        # Parse Response
+        answer = "Sorry, I don't know how to response. Try to rephrase??"
         if response.choices[0].finish_reason == "length":
             answer = ".".join(response.choices[0].text.split(".")[:-2]) + "."
         else:
-            answer = response.choices[0].text.strip().split("\n")[0]
+            answer = response.choices[0].text.replace("\n", "")
+            
         answer = answer.strip()
-        answer = answer[2:] if answer.startswith("B:") else answer
 
-        return answer.strip()
+        return answer
     except Exception:
         return "Sorry, I have a problem. Call Mingzhe to fix me."
 
@@ -149,14 +152,21 @@ def handle_message(event):
         pass
     else:
         try:
-            session_manager[user_id] += ["A:" + message.strip()]
+            message = message.strip()
+            message = (message + ".") if not message.endswith((".", "?", "!")) else message
+
+            session_manager[user_id] += [f"Client: {message}"]
             context_topic = topic_manager[user_id]
             context = context_manager[context_topic] if context_topic != "Your Custom Input" else customize_context_manager[user_id]
             response = openai_generate(context, session_manager[user_id])
-            session_manager[user_id] += ["B:" + response]
+            session_manager[user_id] += [f"Elf: {response}"]
 
             # Length control
             session_manager[user_id] = session_manager[user_id][-5:]
+
+            # # Manual Control
+            # print(f"Input: {message}")
+            # response = input("Answer:")
             
             # Reply message 
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=response))

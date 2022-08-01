@@ -20,3 +20,5 @@ joint_platform/logs/error.log
 joint_platform/app/cure/__pycache__/
 joint_platform/app/cure/utils/__pycache__/__init__.cpython-39.pyc
 joint_platform/start.py
+README.md
+joint_platform/app/socratic_qg/static/model/*
