@@ -12,6 +12,7 @@
         $(".list-group").each(function() {$(this).empty();});
         $("#progress-bar").attr("aria-valuenow", 0);
         $("#progress-bar").width("0%");
+        $("#progress-bar").removeClass('d-none');
         $(".spinner-border").removeClass('d-none');
 
         // Get input text
@@ -30,6 +31,10 @@
         var precent = Math.round(data["current"] / data["total"] * 100);
         $("#progress-bar").attr("aria-valuenow", precent);
         $("#progress-bar").width(precent + "%");
+
+        if (data["current"] == data["total"]) {
+            $("#progress-bar").addClass('d-none');
+        }
 
         // Update results
         var parent_node = $("#" + data["topic"] + "-list");

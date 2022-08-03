@@ -22,3 +22,5 @@ joint_platform/app/cure/utils/__pycache__/__init__.cpython-39.pyc
 joint_platform/start.py
 README.md
 joint_platform/app/socratic_qg/static/model/*
+joint_platform/app/socratic_qg/static/index.js
+joint_platform/app/socratic_qg/static/sbert_model/*
