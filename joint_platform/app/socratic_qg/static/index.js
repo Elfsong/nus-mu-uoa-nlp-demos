@@ -12,7 +12,7 @@
         $(".list-group").each(function() {$(this).empty();});
         $("#progress-bar").attr("aria-valuenow", 0);
         $("#progress-bar").width("0%");
-        $("#progress-bar").removeClass('d-none');
+        $("#progress-div").removeClass('d-none');
         $(".spinner-border").removeClass('d-none');
 
         // Get input text
@@ -33,7 +33,7 @@
         $("#progress-bar").width(precent + "%");
 
         if (data["current"] == data["total"]) {
-            $("#progress-bar").addClass('d-none');
+            $("#progress-div").addClass('d-none');
         }
 
         // Update results

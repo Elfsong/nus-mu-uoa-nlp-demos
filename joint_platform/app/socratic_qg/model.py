@@ -24,15 +24,21 @@ else:
 
 class QG_Model(object):
     def __init__(self) -> None:
+        print("[+] Loading T5 model...")
         self.tokenizer = T5Tokenizer.from_pretrained("./app/socratic_qg/static/model/")
         self.model = T5ForConditionalGeneration.from_pretrained("./app/socratic_qg/static/model/")
         self.model.eval()
         self.model.to(device)
+        print("[*] Loading T5 model successfully!")
 
+        print("[+] Loading bleu...")
         self.bleu = Jury(metrics = ["bleu"])
+        print("[*] Loading bleu successfully!")
         
+        print("[+] Loading SentenceTransformer...")
         self.model_sbert = SentenceTransformer('./app/socratic_qg/static/sbert_model/', device=device)
         self.model_sbert.eval()
+        print("[*] Loading SentenceTransformer successfully!")
 
         # Configuration
         self.max_length = 300
