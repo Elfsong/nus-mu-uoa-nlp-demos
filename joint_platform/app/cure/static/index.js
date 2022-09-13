@@ -6,55 +6,10 @@
     // Create a new socket.io connection
     window.socket = io("/cure");
 
-    // Scenario Control
-    function step0_down() {
-        $('.step-0').addClass('d-none');
-    };
-
-    function step1_up() {
-        var stepper = Metro.getPlugin('#stepper', 'stepper');
-        stepper.toStep(1)
-        $('.step-1').removeClass('d-none');
-    };
-
-    function step1_down() {
-        $('.step-1').addClass('d-none');
-    };
-
-    function step2_up() {
-        var stepper = Metro.getPlugin('#stepper', 'stepper');
-        stepper.toStep(2)
-        $('.step-2').removeClass('d-none');
-    };
-
-    function step2_down() {
-        $('.step-2').addClass('d-none');
-        $('.step-2-next').addClass('d-none');
-    };
-
-    function step3_up() {
-        var stepper = Metro.getPlugin('#stepper', 'stepper');
-        stepper.toStep(3)
-        $('.step-3').removeClass('d-none');
-    };
-
-    function step3_down() {
-        $('.step-3').addClass('d-none');
-        $('.step-3-next').addClass('d-none');
-    };
-
-    function step4_up() {
-        var stepper = Metro.getPlugin('#stepper', 'stepper');
-        stepper.toStep(4)
-        $('.step-4').removeClass('d-none');
-    };
-
     // Events
-    $('#retrieve-button').on("click", function () {
-        step0_down();
-        step1_up();
-        
-        $('#retrieve-button').addClass("disabled")
+    $('#retrieve-start-button').on("click", function () {        
+        $('#retrieve-start-button').addClass("disabled");
+        $('#retrieve-stop-button').removeClass("disabled");
         var keywords = $("#keywords").val();
         window.socket.emit("coordinator", {
             "step": 1,
@@ -63,42 +18,30 @@
         });
     });
 
-    $('#next-step-1-button').on("click", function () {
+    $('#retrieve-stop-button').on("click", function () {        
         window.socket.emit("coordinator", {
             "step": 1,
             "task": "stop"
         });
-        step1_down();
-        step2_up();
+        $('#retrieve-stop-button').addClass("disabled");
+        $('#retrieve-start-button').removeClass("disabled");
     });
 
-    $('#exec-step-2-button').on("click", function () {
+    $('#pre-processing-button').on("click", function () {
         window.socket.emit("coordinator", {
             "step": 2,
             "task": "pipeline"
         });
-        $('#exec-step-2-button').addClass("disabled");
     });
 
-    $('#next-step-2-button').on("click", function () {
-        step2_down();
-        step3_up();
-    });
-
-    $('#exec-step-3-button').on("click", function () {
+    $('#clustering-button').on("click", function () {
         window.socket.emit("coordinator", {
             "step": 3,
             "task": "pipeline"
         });
-        $('#exec-step-3-button').addClass("disabled");
     });
 
-    $('#next-step-3-button').on("click", function () {
-        step3_down();
-        step4_up();
-    });
-
-    $('#exec-step-4-button').on("click", function () {
+    $('#classification-button').on("click", function () {
         window.socket.emit("coordinator", {
             "step": 4,
             "task": "pipeline"
@@ -108,11 +51,14 @@
 
     window.socket.on('update_tweets', function(data) {
         var tweet_list = Metro.getPlugin('#tweet-list', 'listview');
+        var tweet_count = $("#total-tweets-count");
 
         tweet_list.add(null, {
             icon: "<span class='mif-chevron-right fg-cyan'>",
             caption: data["tweet"],
         });
+
+        tweet_count.text(parseInt(tweet_count.text()) + 1);
     });
 
     window.socket.on('update_status', function(data) {
@@ -120,15 +66,11 @@
         _step = data["step"]
         _status = data["status"]
 
-        if (_step==2 && _status=="done"){
-            $('.step-2-next').removeClass("d-none");
-            $('#exec-step-2-button').addClass("d-none");
+        if (_step == 2 && _status == "done"){
             Metro.toast.create("Step 2 is finished.");
         }
 
-        if (_step==3 && _status=="done"){
-            $('.step-3-next').removeClass("d-none");
-            $('#exec-step-3-button').addClass("d-none");
+        if (_step == 3 && _status == "done"){
             const ctx = document.getElementById('myChart').getContext('2d');
             document.getElementById('myChart').height = 600;
 
@@ -162,6 +104,7 @@
                     }
                 }
             });
+            
             Metro.toast.create("Step 3 is finished.");
         }
 

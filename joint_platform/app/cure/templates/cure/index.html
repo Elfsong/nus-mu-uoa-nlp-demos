@@ -5,221 +5,163 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+    <link href="./static/index.css" rel="stylesheet">
     <title>CURE</title>
 </head>
 
 <body>
-    <div class="container">
-
-    </div>
-
-    <div class="container-fluid">
-        <div class="grid">
-            <!-- Indicator -->
-            <!-- <div class="row">
-                <div class="cell">
-                    <div>1</div>
-                </div>
-                <div class="cell">
-                    <div>2</div>
-                </div>
-                <div class="cell">
-                    <div>3</div>
-                </div>
-                <div class="cell">
-                    <div>4</div>
-                </div>
-                <div class="cell">
-                    <div>5</div>
-                </div>
-                <div class="cell">
-                    <div>6</div>
-                </div>
-                <div class="cell">
-                    <div>7</div>
-                </div>
-                <div class="cell">
-                    <div>8</div>
-                </div>
-                <div class="cell">
-                    <div>9</div>
-                </div>
-                <div class="cell">
-                    <div>10</div>
-                </div>
-                <div class="cell">
-                    <div>11</div>
-                </div>
-                <div class="cell">
-                    <div>12</div>
-                </div>
-            </div> -->
-
+    <!-- Dashboard -->
+    <div class="container-fluid" style="height: 100vh">
+        <div class="grid" style="height: 100vh">
             <!-- Title -->
             <div class="row">
-                <div class="cell-3 offset-1">
-                    <h1>CURE Demo</h1>
-                </div>
+                <div class="cell-md-5"><h2>CURE DEMO</h2></div>
             </div>
 
-            <!-- Search Bar -->
             <div class="row">
-                <div class="cell-7 offset-2">
-                    <input id="keywords" type="text" data-role="taginput" value="diabetes,diabetic,#diabetes,#diabetic,#diabetestype,#diabetesawareness,#insulin,hello">
-                </div>
-                <div class="cell-1">
-                    <button id="retrieve-button" class="button" style="width: 100%">Retrieve</button>
-                </div>
-            </div>
-            
-            <!-- Stepper -->
-            <div class="row">
-                <div class="cell-8 offset-2">
-                    <div id="stepper" data-role="stepper" data-steps="4" data-step="1"></div>
-                </div>
-            </div>
-
-            <!-- Instructions -->
-            <div class="row step-0">
-                <div class="cell-8 offset-2">
-                    <div style="height:360px">
-                        <h2>Instructions</h2>
-                        <p>
-                            <h5>Step 1. Scraping tweets from Twitter stream</h3>
-                            <div class="remark">
-                                python3 ./backend/stream_reader.py
-                            </div>
-                        </p>
-                        <p>
-                            <h5>Step 2. Pre-processing retrieved tweets</h3>
-                            <div class="remark">
-                                python3 ./backend/stream_reader.py
-                            </div>
-                        </p>
-                        <p>
-                            <h5>Step 3. Pre-processing retrieved tweets</h3>
-                            <div class="remark">
-                                python3 ./backend/stream_reader.py
-                            </div>
-                        </p>
-                        <p>
-                            <h5>Step 4. Check-worthiness Classification</h3>
-                            <div class="remark">
-                                python3 ./backend/stream_reader.py
-                            </div>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 1 -->
-            <div class="row step-1 d-none">
-                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
-                    <h2>Step 1: Scraping tweets from Twitter stream</h2>
-                </div>
-            </div>
-
-            <div class="row step-1 d-none">
-                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
-                    <ul id="tweet-list" data-role="listview"
-                        data-view="table"
-                        data-select-node="true"
-                        data-structure='{"date": true}'>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row step-1 d-none">
-                <div class="cell-2 offset-5">
-                    <button id="next-step-1-button" class="button primary" style="width:100%">Next Step</button>
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="row step-2 d-none">
-                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
-                    <h2>Step 2: Pre-processing retrieved tweets</h2>
-                </div>
-            </div>
-
-            <div class="row step-2 d-none">
-                <div class="cell-8 offset-2">
-                    <div class="remark">
-                        <p>tp = TweetProcessor()</p>
-                        <p>tp.preprocess("alzheimers_tweets", "2022-07-12")</p>
-                        <p>tp.convert("alzheimers_tweets", "2022-07-12")</p>
-
-                        <p>tc = TweetsCluster()</p>
-                        <p>tc.cluster(client_id, "2022-07-12")</p>
-                        <p>tc.filter(client_id, "2022-07-12")</p>
+                <div class="cell-xl-6">
+                    <div class="card">
+                        <div class="container">
+                            <div class="grid">
+                                <!-- Step 1. Scraping tweets from Twitter stream input -->
+                                <div class="row">
+                                    <div class="grid">
+                                        <div class="row flex-justify-center">
+                                            <h3>Step 1. Scraping tweets from Twitter stream</h3>
+                                        </div>
                 
-                        <p>cr = ClusterRender()</p>
-                        <p>cr.render(client_id, "2022-07-12")</p>
+                                        <div class="row flex-justify-center">
+                                            <div class="cell-10">
+                                                <input id="keywords" type="text" data-role="taginput" value="diabetes,diabetic,#diabetes,#diabetic,#diabetestype,#diabetesawareness,#insulin">
+                                            </div>
+                                        </div>
+                
+                                        <div class="row flex-justify-center">
+                                            <div class="cell-xl-4">
+                                                <button id="retrieve-start-button" class="button primary">Run</button>
+                                            </div>
+                                            <div class="cell-xl-4">
+                                                <button id="retrieve-stop-button" class="button alert disabled">Stop</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <!-- Step 1. Scraping tweets from Twitter stream output -->
+                                <div class="row flex-justify-center" style="flex: 1; overflow: hidden;">
+                                    <div class="cell-xl-10" style="overflow-y: scroll; height:100%; max-height: 500px;">
+                                        <ul id="tweet-list" data-role="listview"
+                                            data-view="table"
+                                            data-select-node="true"
+                                            data-structure='{"date": true}'>
+                                            <li data-icon="<span class='mif-chevron-right fg-cyan'>" data-caption="Retrieved tweets will be listed here:"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cell-xl-6">
+                    <div class="card">
+                        <div class="container">
+                            <div class="grid">
+                                <!-- Step 2: Pre-processing retrieved tweets input -->
+                                <div class="row">
+                                    <div class="grid">
+                                        <div class="row flex-justify-center">
+                                            <h3>Step 2: Pre-processing retrieved tweets</h3>
+                                        </div>
+                                        <div class="row flex-justify-center">
+                                            <div class="cell-xl-10">
+                                                <!-- <input data-role="datepicker"> -->
+                                            </div>
+                                        </div>
+                                        <div class="row flex-justify-center">
+                                            <div class="cell-xl-4">
+                                                <button id="pre-processing-button" class="button primary">Execute</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <!-- Step 2: Pre-processing retrieved tweets output -->
+                                <div class="row flex-justify-center" style="flex:1; overflow: hidden;">
+                                    <div class="cell-10">
+                                        <h2 style="text-align: center;">Total Tweets: <var id="total-tweets-count">0</var></h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row step-2 d-none">
-                <div class="cell-2 offset-5">
-                    <button id="exec-step-2-button" class="button success" style="width:100%">Execute</button>
-                </div>
-            </div>
+            <div class="row">
+                <div class="cell-xl-6">
+                    <div class="card">
+                        <div class="container">
+                            <div class="grid" >
+                                <!-- Step 3: Clustering and Flitering Tweets input -->
+                                <div class="row">
+                                    <div class="grid">
+                                        <div class="row flex-justify-center">
+                                            <h3>Step 3: Clustering and Flitering Tweets</h3>
+                                        </div>
 
-            <div class="row step-2-next d-none">
-                <div class="cell-2 offset-5">
-                    <button id="next-step-2-button" class="button primary" style="width:100%">Next Step</button>
-                </div>
-            </div>
+                                        <div class="row flex-justify-center">
+                                            <div class="cell-xl-4">
+                                                <button id="clustering-button" class="button primary">Run</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-            <!-- Step 3 -->
-            <div class="row step-3 d-none">
-                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
-                    <h2>Step 3: Clustering and Flitering Tweets</h2>
+                                <!-- Step 3: Clustering and Flitering Tweets output -->
+                                <div class="row" style="flex: 1; overflow: hidden;">
+                                    <canvas id="myChart" style="height: 0px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row step-3 d-none">
-                <div class="cell-8 offset-2">
-                    <div class="chart-container">
-                        <canvas id="myChart" height="0px"></canvas>
+                <div class="cell-xl-6">
+                    <div class="card">
+                        <div class="container">
+                            <div class="grid">
+                                <!-- Step 4: Classification of Check-worthiness input -->
+                                <div class="row">
+                                    <div class="grid">
+                                        <div class="row flex-justify-center">
+                                            <h3>Step 4: Classification of Check-worthiness</h3>
+                                        </div>
+
+                                        <div class="row flex-justify-center">
+                                            <div class="cell-xl-4">
+                                                <button id="classification-button" class="button primary">Run</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 4: Classification of Check-worthiness output -->
+                                <div class="row flex-justify-center" style="flex:1; overflow: hidden;">
+                                    <div class="cell-xl-10" style="overflow-y: scroll; height:100%; max-height:500px;">
+                                        <ul id="check-worthy-list" data-role="listview"
+                                            data-view="table"
+                                            data-select-node="true"
+                                            data-structure='{"date": true}'>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row step-3 d-none">
-                <div class="cell-2 offset-5">
-                    <button id="exec-step-3-button" class="button success" style="width:100%">Execute</button>
-                </div>
-            </div>
-
-            <div class="row step-3-next d-none">
-                <div class="cell-2 offset-5">
-                    <button id="next-step-3-button" class="button primary" style="width:100%">Next Step</button>
-                </div>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="row step-4 d-none">
-                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
-                    <h2>Step 4: Classification of Check-worthiness</h2>
-                </div>
-            </div>
-
-            <div class="row step-4 d-none">
-                <div class="cell-8 offset-2" style="overflow-y: scroll; max-height:400px;">
-                    <ul id="check-worthy-list" data-role="listview"
-                        data-view="table"
-                        data-select-node="true"
-                        data-structure='{"date": true}'>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row step-4 d-none">
-                <div class="cell-2 offset-5">
-                    <button id="exec-step-4-button" class="button success" style="width:100%">Execute</button>
-                </div>
-            </div>
         </div>
     </div>
 
