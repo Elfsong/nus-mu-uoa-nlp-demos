@@ -7,7 +7,7 @@
 import os
 import sys
 import random
-import model_utils
+import app.artquest2.model_utils as model_utils
 
 def loadAZs(subsf, plines):
     azlines=open(subsf, "r").readlines()
@@ -69,10 +69,113 @@ def get_engaging_question(amessage, vmessage, azone):
     #print ("DEBUG in GEQ "+inp_string)
     return model_utils.generate_engaging_question(inp_string)
 
-def getSession(title, artist, psgf, subsf):
-    # seed_value = random.randrange(sys.maxsize)
-    # random.seed(seed_value)
+def get_openning_sentence(title, artist):
+    openings = model_utils.opening_cues
+    openings.append("Do you like paintings by " + artist + "?")
+        
+    amessage = f"This is '{title}', a painting by {artist}."
+    aextra = openings[random.randint(0, len(openings)-1)].strip()
 
+    return [amessage, aextra]
+
+
+def get_close_sentence(title, artist):
+    pword = "this painting"
+
+    ch = random.randint(0,2)
+    if ch == 0:
+        pword = title
+    elif ch == 1:
+        pword = title + " by " + artist
+    
+    ch = random.randint(0, 3)
+    if ch == 0:
+        lastMessage = "It was nice sharing about " + pword + "!"
+    elif ch == 1:
+        lastMessage = "Hope you found " + pword + " interesting!"
+    else:
+        lastMessage = "Hope you enjoyed knowing more about " + pword + "!"
+
+    return lastMessage
+
+def getResponse(title, artist, psgf, subsf, vmessage):
+    amessage = ""
+    aextra = ""
+
+    if vmessage.lower()=="exit":
+        return get_close_sentence(title, artist)
+
+    plines = open (psgf, "r").readlines()
+    q2qc, qembeddings, questions = model_utils.getQuestionEmbeddings2()
+    l2az, qc2l = loadAZs(subsf, plines)
+    seen = {}
+
+    sims = model_utils.getSimilarities(vmessage, qembeddings)
+
+    ltosrt = [(question, sims[qx]) for qx, question in enumerate(questions)]
+    ltosrt.sort(key=lambda x:x[1], reverse=True)
+
+    for ele in ltosrt:
+        (question, simval) = ele
+        qc = q2qc[question]
+        chosensent = ""
+        if qc in qc2l:
+            for sent in qc2l[qc]:
+                if sent in seen:
+                    continue
+                else:
+                    chosensent = sent
+                    seen[chosensent] = ""
+                    break
+        else:
+            for pline in plines:
+                if pline not in seen:
+                    chosensent = pline
+                    seen[chosensent] = ""
+                    break
+
+
+        if chosensent != "":
+            amessage = chosensent
+            azone = ""
+            az_typec235 = []
+            az_typec14 = []
+            az_typenp = []
+            az_typener = []
+
+            if chosensent in l2az:
+                temp = l2az[chosensent]
+                for ele in temp:
+                    (z, t) = ele
+                    if t.strip() in ["C2", "C3", "C5"]:
+                        az_typec235.append(z)
+                    elif t.strip() in ["C1", "C4"]:
+                        az_typec14.append(z)
+                    elif t.strip() == "NP":
+                        az_typenp.append(z)
+                    else:
+                        az_typener.append(z)
+                
+                if len(az_typec235) != 0:
+                    ch = random.randint(0, len(az_typec235)-1)
+                    azone = az_typec235[ch]
+                elif len(az_typec14) != 0:
+                    ch = random.randint(0, len(az_typec14)-1)
+                    azone = az_typec14[ch]
+                elif len(az_typenp) != 0:
+                    ch = random.randint(0, len(az_typenp)-1)
+                    azone = az_typenp[ch]
+                elif len(az_typener) != 0:
+                    ch = random.randint(0, len(az_typener)-1)
+                    azone = az_typener[ch]
+
+            aextra = get_engaging_question(amessage, vmessage, azone)
+            break
+    
+    return [amessage, aextra]
+
+
+def getSession(title, artist, psgf, subsf):
     plines = open (psgf, "r").readlines()
     q2qc, qembeddings, questions = model_utils.getQuestionEmbeddings2()
     seen = {}
@@ -110,10 +213,9 @@ def getSession(title, artist, psgf, subsf):
         amessage="This is \""+title+"\", a painting by "+artist+"."
     else:
         amessage=title
+
     aextra=openings[oindx]
  
-    extra_resp=""
-    prevvmessage=""
     while True:
         print ("\n")
         vmessage = input("ArtQuest: "+amessage.strip()+"\n"+aextra+"\n\nYour response here or exit:")

@@ -7,12 +7,18 @@
     PP_data = [
         {
             "picture_url": "static/data/picture_4.jpeg", 
-            "title": "Boat and Shophouses and ", 
+            "title": "Boat and Shophouses", 
+            "author": "Georgette Chen",
+            "psgf": "./app/artquest2/static/data/sents/gallery/boats_and_old_shophouses.txt",
+            "subsf": "./app/artquest2/static/data/subsumed/gallery/boats_and_old_shophouses.txt",
             "persona":"The representation of colourful shophouses and sampans along the river in Chen`s painting Boats and Shophouses, for example, offers an evocative and nostalgic view. Her oeuvre is inextricably rooted in the quintessential Singapore. "
         },
         {
             "picture_url": "static/data/picture_5.jpeg", 
             "title": "Tropical Fruits", 
+            "author": "Georgette Chen",
+            "psgf": "./app/artquest2/static/data/sents/gallery/1962_malayan_fruits.txt",
+            "subsf": "./app/artquest2/static/data/subsumed/gallery/1962_malayan_fruits.txt",
             "persona":"Still life paintings—such as Tropical Fruits—form the bulk of Chen`s artistic production. The meticulous set-ups of fruit, tableware and furniture not only captured the vivid colours and rich textures of Malaya, but also enabled to hone her artistic technique."
         },
     ];
@@ -63,8 +69,14 @@
 
     function cleanMessage() {
         $('.messages').html("");
-        showMessage('Hello This is ArtQuest demo.', "left", 0);
+        // showMessage('Hello This is ArtQuest demo.', "left", 0);
     };
+
+    function getOpenning() {
+        let current_picture_index = $('.carousel-inner').find('.active').index();
+        let data = { "picture": PP_data[current_picture_index] };
+        window.socket.emit('get_openning', {data: JSON.stringify(data)});
+    }
 
     function randerCarousel() {
         indicators = [];
@@ -86,7 +98,6 @@
     };
 
     function pedict() {
-        $('.carousel').carousel('pause');
         showMessage(getMessageText(), "right");
 
         // Generate conversation history
@@ -98,40 +109,41 @@
 
         // Persona selection
         let current_picture_index = $('.carousel-inner').find('.active').index();
-        let persona = PP_data[current_picture_index].persona;
+        let picture = PP_data[current_picture_index];
 
         let data = {
-            "persona": persona,
+            "picture": picture,
             "conversation_list": conversation_list
         }
+        console.log(data);
 
-        // Socket.IO
-        window.socket.open();
-        window.socket.emit('artquest_request', {data: JSON.stringify(data)});
+        window.socket.emit('artquest2_request', {data: JSON.stringify(data)});
     }
 
     // Init function
     $(window).init(function() {
         // Socket IO Init
-        window.socket = io("/artquest");
+        window.socket = io("/artquest2");
 
-        // Pause carousel autoplay
+        // Carousel
         randerCarousel();
-        $('.carousel').carousel('pause');
 
-        // Prologue
-        showMessage('Hello This is ArtQuest demo.', "left", 0);
-        showMessage('Ask me anything:)', "left", 1000);
+        // Socket.IO
+        window.socket.open();        
 
         // register socket event
-        window.socket.on('update_status', function(response) {
+        window.socket.on('receive_message', function(response) {
             console.log(response);
-            if (response.result.response) {
-                showMessage(response.result.response, "left", 500);
+            if (response.status == "ok") {
+                showMessage(response.message, "left", 500);
             } else {
                 showMessage("Aha, something went wrong...", "left", 500);
             }
         });
+        
+        // Prologue
+        cleanMessage();
+        getOpenning();
     });
 
     // Event hooks -> begin
@@ -143,8 +155,9 @@
         if (e.which === 13) { pedict(); }
     });
 
-    $('.carousel').on('slide.bs.carousel', function () {
+    $('.carousel').on('slid.bs.carousel', function () {
         cleanMessage();
+        getOpenning();
     });
     // Event hooks <- end
 })();

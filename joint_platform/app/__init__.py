@@ -35,17 +35,17 @@ def create_app(debug=False):
     # app.register_blueprint(socratic_qg_blueprint, url_prefix='/socratic_qg')
     # app.logger.info("[socratic_qg_blueprint] registed!")
 
-    from .artquest import artquest as artquest_blueprint
-    app.register_blueprint(artquest_blueprint, url_prefix='/artquest')
-    app.logger.info("[artquest_blueprint] registed!")
+    # from .artquest import artquest as artquest_blueprint
+    # app.register_blueprint(artquest_blueprint, url_prefix='/artquest')
+    # app.logger.info("[artquest_blueprint] registed!")
 
     from .artquest2 import artquest2 as artquest2_blueprint
     app.register_blueprint(artquest2_blueprint, url_prefix='/artquest2')
     app.logger.info("[artquest2_blueprint] registed!")
 
-    from .multilingual_qa import multilingual_qa as multilingual_qa_blueprint
-    app.register_blueprint(multilingual_qa_blueprint, url_prefix='/multilingual_qa')
-    app.logger.info("[multilingual_qa_blueprint] registed!")
+    # from .multilingual_qa import multilingual_qa as multilingual_qa_blueprint
+    # app.register_blueprint(multilingual_qa_blueprint, url_prefix='/multilingual_qa')
+    # app.logger.info("[multilingual_qa_blueprint] registed!")
 
     from .line_bot import line_bot as line_bot_blueprint
     app.register_blueprint(line_bot_blueprint, url_prefix='/line_bot')

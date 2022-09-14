@@ -14,11 +14,10 @@ import stanza
 import string
 
 
-questions_classcues_f="./static/data/refq_qtype_engq.map.txt"
+questions_classcues_f="./app/artquest2/static/data/refq_qtype_engq.map.txt"
 sent_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
-eqg_modeldir = "./static/data/model"
 eqg_tokenizer=AutoTokenizer.from_pretrained("t5-large")
-eqg_model = T5ForConditionalGeneration.from_pretrained(eqg_modeldir)
+eqg_model = T5ForConditionalGeneration.from_pretrained("./app/artquest2/static/data/model/")
 nlp = stanza.Pipeline(lang='en', use_gpu=False, processors='tokenize,pos,ner')
 
 nerlist=["PERSON", "NORP", "LOC", "ORG",
