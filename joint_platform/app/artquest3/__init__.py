@@ -3,15 +3,15 @@ from flask_socketio import emit
 from .. import socketio
 import json
 
-import app.artquest2.model as model
+import app.artquest3.model as model
 
-artquest2 = Blueprint('artquest2', __name__, template_folder='./templates', static_folder='./static')
+artquest3 = Blueprint('artquest3', __name__, template_folder='./templates', static_folder='./static')
 
-@artquest2.route('/')
+@artquest3.route('/')
 def index():
-    return render_template('artquest2/index.html')
+    return render_template('artquest3/index.html')
 
-@socketio.on('get_openning', namespace='/artquest2')
+@socketio.on('get_openning', namespace='/artquest3')
 def get_openning(request):
     data = json.loads(request['data'])
 
@@ -24,8 +24,8 @@ def get_openning(request):
     emit('receive_message', {'status': "ok", 'message': openning_sentence[1]})
 
 
-@socketio.on('artquest2_request', namespace='/artquest2')
-def artquest2_request(request):
+@socketio.on('artquest3_request', namespace='/artquest3')
+def artquest3_request(request):
     data = json.loads(request['data'])
 
     try:
@@ -34,13 +34,18 @@ def artquest2_request(request):
         psgf = data['picture']["psgf"]
         subsf = data['picture']["subsf"]
         seen = data["seen"]
+        seen_questions = data["seen_questions"]
         vmessage = data["conversation_list"][-1]
 
-        responses = model.getResponse(title, author, psgf, subsf, seen, vmessage)
+        print(data)
+
+        responses = model.getResponse(title, author, psgf, subsf, seen, seen_questions, vmessage)
+
+        print("Responses:", responses)
 
         emit('receive_message', {'status': "ok", 'message': responses[0]})
         emit('receive_message', {'status': "ok", 'message': responses[1]})
-        emit('receive_seen', {'status': "ok", 'seen': responses[2]})
+        emit('receive_seen', {'status': "ok", 'seen': responses[2], 'seen_questions': responses[3]})
     except Exception as e:
         print(e)
         status = 'Error occurred (See details in the log of backend application)'

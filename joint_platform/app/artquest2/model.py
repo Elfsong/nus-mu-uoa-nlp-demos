@@ -98,7 +98,7 @@ def get_close_sentence(title, artist):
 
     return lastMessage
 
-def getResponse(title, artist, psgf, subsf, vmessage):
+def getResponse(title, artist, psgf, subsf, seen, vmessage):
     amessage = ""
     aextra = ""
 
@@ -108,7 +108,6 @@ def getResponse(title, artist, psgf, subsf, vmessage):
     plines = open (psgf, "r").readlines()
     q2qc, qembeddings, questions = model_utils.getQuestionEmbeddings2()
     l2az, qc2l = loadAZs(subsf, plines)
-    seen = {}
 
     sims = model_utils.getSimilarities(vmessage, qembeddings)
 
@@ -125,13 +124,13 @@ def getResponse(title, artist, psgf, subsf, vmessage):
                     continue
                 else:
                     chosensent = sent
-                    seen[chosensent] = ""
+                    seen += [chosensent]
                     break
         else:
             for pline in plines:
                 if pline not in seen:
                     chosensent = pline
-                    seen[chosensent] = ""
+                    seen += [chosensent]
                     break
 
 
@@ -172,7 +171,11 @@ def getResponse(title, artist, psgf, subsf, vmessage):
             aextra = get_engaging_question(amessage, vmessage, azone)
             break
     
-    return [amessage, aextra]
+    if amessage=="":
+        amessage = f"That's all I had on {title} by {artist}."
+        aextra = get_close_sentence(title, artist)
+
+    return [amessage, aextra, seen]
 
 
 def getSession(title, artist, psgf, subsf):

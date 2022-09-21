@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Font CSS -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,500;1,300&display=swap" rel="stylesheet">
+
+        <!-- Bootstrap CSS -->
+        <link href="{{ url_for('.static', filename='bootstrap5/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('.static', filename='index.css') }}" rel="stylesheet">
+        
+        <!-- Icon -->
+        <link rel="shortcut icon" href="{{ url_for('.static', filename='favicon.png') }}" />
+
+        <title>ArtQuest Demo</title>
+    </head>
+
+    <body>
+        <div class="container p-5 bk-primary-blue full-width font-500">
+            <h2>ArtQuest 3.0 Demo</h2>
+            <p>A True Paradise of the Artist</p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-7" id="chat-section">
+                    <div class="padding"> </div>
+                    <div class="chat_window">
+                        <div class="top_menu">
+                            <div class="title">ArtQuest</div>
+                        </div>
+                        <ul class="messages"></ul>
+                        <div class="bottom_wrapper clearfix">
+                            <div class="message_input_wrapper">
+                                <input class="message_input" placeholder="Type your message here..." />
+                            </div>
+                            <div class="send_message">
+                                <div class="icon"></div>
+                                <div class="text">Send</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message_template">
+                        <li class="message">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text"></div>
+                            </div>
+                        </li>
+                    </div>
+
+                </div>
+
+                <div class="col-5" id="show-section">
+                    <div style="padding-top: 10%; "></div>
+
+                    <div id="carousel-slides" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                    <div class="carousel-indicators"></div>
+                    <div class="carousel-inner"></div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-slides" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-slides" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="{{ url_for('.static', filename='bootstrap5/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('.static', filename='jquery/jquery3.6.0.min.js') }}"></script>
+        <script src="{{ url_for('.static', filename='jquery/socket.io.min.js') }}"></script>
+        <script src=" {{ url_for('.static', filename='index.js') }}"></script>
+
+    </body>
+</html>

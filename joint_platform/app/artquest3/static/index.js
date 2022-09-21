@@ -9,18 +9,16 @@
             "picture_url": "static/data/picture_4.jpeg", 
             "title": "Boat and Shophouses", 
             "author": "Georgette Chen",
-            "psgf": "./app/artquest2/static/data/sents/gallery/boats_and_old_shophouses.txt",
-            "subsf": "./app/artquest2/static/data/subsumed/gallery/boats_and_old_shophouses.txt",
-            "seen": [],
+            "psgf": "./app/artquest3/static/data/sents/gallery/boats_and_old_shophouses.txt",
+            "subsf": "./app/artquest3/static/data/validated_az/gallery/boats_and_old_shophouses.txt",
             "persona":"The representation of colourful shophouses and sampans along the river in Chen`s painting Boats and Shophouses, for example, offers an evocative and nostalgic view. Her oeuvre is inextricably rooted in the quintessential Singapore. "
         },
         {
             "picture_url": "static/data/picture_5.jpeg", 
             "title": "Tropical Fruits", 
             "author": "Georgette Chen",
-            "psgf": "./app/artquest2/static/data/sents/gallery/1962_malayan_fruits.txt",
-            "subsf": "./app/artquest2/static/data/subsumed/gallery/1962_malayan_fruits.txt",
-            "seen": [],
+            "psgf": "./app/artquest3/static/data/sents/gallery/1962_malayan_fruits.txt",
+            "subsf": "./app/artquest3/static/data/validated_az/gallery/1962_malayan_fruits.txt",
             "persona":"Still life paintings—such as Tropical Fruits—form the bulk of Chen`s artistic production. The meticulous set-ups of fruit, tableware and furniture not only captured the vivid colours and rich textures of Malaya, but also enabled to hone her artistic technique."
         },
     ];
@@ -116,19 +114,21 @@
         let data = {
             "picture": PP_data[current_picture_index],
             "seen": window.seen,
-            "conversation_list": conversation_list
+            "seen_questions": window.seen_questions,
+            "conversation_list": conversation_list,
         }
         console.log(data);
 
-        window.socket.emit('artquest2_request', {data: JSON.stringify(data)});
+        window.socket.emit('artquest3_request', {data: JSON.stringify(data)});
     }
 
     // Init function
     $(window).init(function() {
         // Socket IO Init
-        window.socket = io("/artquest2");
+        window.socket = io("/artquest3");
 
         window.seen = [];
+        window.seen_questions = [];
 
         // Carousel
         randerCarousel();
@@ -149,6 +149,7 @@
         window.socket.on('receive_seen', function(response) {
             console.log(response);
             window.seen = response.seen;
+            window.seen_questions = response.seen_questions;
         });
         
         // Prologue

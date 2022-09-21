@@ -39,21 +39,25 @@ def create_app(debug=False):
     # app.register_blueprint(artquest_blueprint, url_prefix='/artquest')
     # app.logger.info("[artquest_blueprint] registed!")
 
-    from .artquest2 import artquest2 as artquest2_blueprint
-    app.register_blueprint(artquest2_blueprint, url_prefix='/artquest2')
-    app.logger.info("[artquest2_blueprint] registed!")
+    # from .artquest2 import artquest2 as artquest2_blueprint
+    # app.register_blueprint(artquest2_blueprint, url_prefix='/artquest2')
+    # app.logger.info("[artquest2_blueprint] registed!")
+
+    from .artquest3 import artquest3 as artquest3_blueprint
+    app.register_blueprint(artquest3_blueprint, url_prefix='/artquest3')
+    app.logger.info("[artquest3_blueprint] registed!")
 
     # from .multilingual_qa import multilingual_qa as multilingual_qa_blueprint
     # app.register_blueprint(multilingual_qa_blueprint, url_prefix='/multilingual_qa')
     # app.logger.info("[multilingual_qa_blueprint] registed!")
 
-    from .line_bot import line_bot as line_bot_blueprint
-    app.register_blueprint(line_bot_blueprint, url_prefix='/line_bot')
-    app.logger.info("[line_bot_blueprint] registed!")
+    # from .line_bot import line_bot as line_bot_blueprint
+    # app.register_blueprint(line_bot_blueprint, url_prefix='/line_bot')
+    # app.logger.info("[line_bot_blueprint] registed!")
 
-    from .cure import cure as cure_blueprint
-    app.register_blueprint(cure_blueprint, url_prefix='/cure')
-    app.logger.info("[cure_blueprint] registed!")
+    # from .cure import cure as cure_blueprint
+    # app.register_blueprint(cure_blueprint, url_prefix='/cure')
+    # app.logger.info("[cure_blueprint] registed!")
 
     # Init socketio
     socketio.init_app(app, async_mode='threading')
