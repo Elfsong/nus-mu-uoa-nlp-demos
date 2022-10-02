@@ -3,6 +3,7 @@
 import re
 import os
 import openai
+import requests
 from collections import defaultdict
 from flask import Blueprint, request, abort
 from linebot import LineBotApi, WebhookHandler
@@ -207,3 +208,38 @@ def callback():
         abort(400)
 
     return 'OK'
+
+# Callback handler
+@line_bot.route('/whatsup_callback', methods=['GET', 'POST'])
+def whatsup_callback():
+    # if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
+    #     if not request.args.get("hub.verify_token")== "YOUR VARIFICATION TOKEN":
+    #         return "Verification token missmatch", 403
+    #     return request.args['hub.challenge'], 200
+    # return "Hello world", 200
+    print(request)
+    res = request.get_json()
+    print(res)
+    try:
+        if res['entry'][0]['changes'][0]['value']['messages'][0]['id']:
+            send_msg("Thank you for the response.")
+    except:
+        pass
+    return '200 OK HTTPS.'
+
+def send_msg(msg):
+   headers = {
+       'Authorization': 'Bearer EAAL015b5i6EBAGbG8IXd6d8aJ1N1Gkop9P9M7ER50ap75OHhMtHr9C0e1qrjT9z0EKiUEVhzxGu6bYLQp3KY1l1lkc2Qdqap4vDm64nDqG8vZBTysL6VSUadEaS4YrPF3MJOVUhPDLB9yvHdfyVTmKsokz5KTzqqYIZBj7yLrZCvhS0xpP7BZBEURZAmk3RZCdfCSnkRjxBg6MUXl4rgqHLv7KFi4Q9GEZD',
+   }
+   json_data = {
+       'messaging_product': 'whatsapp',
+       'to': '6596582486',
+       'type': 'text',
+       "text": {
+           "body": msg
+       }
+   }
+   response = requests.post('https://graph.facebook.com/v13.0/104438272348152/messages', headers=headers, json=json_data)
+   print(response.text)
+ 
+ 

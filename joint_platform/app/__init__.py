@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, jsonify
 from flask_socketio import SocketIO
 import logging
 
@@ -20,12 +20,14 @@ def create_app(debug=False):
     def index():
         return redirect(url_for('homepage.index'))
 
-    @app.route('/nzsg-nlp')
-    def nzsg_rerouter():
-        return redirect("https://nlp-platform.online:8443/nzsg-nlp/")
+    @app.errorhandler(404)
+    def page_not_found(e):
+        # note that we set the 404 status explicitly
+        return jsonify({"Status": "Unloaded", "Solution": "Ask admin to load the application."}), 404
     
     # Service registering
     app.logger.info("Registering services...")
+    # app.register_error_handler(404, page_not_found)
     
     from .homepage import homepage as homepage_blueprint
     app.register_blueprint(homepage_blueprint, url_prefix='/homepage')
@@ -43,17 +45,21 @@ def create_app(debug=False):
     # app.register_blueprint(artquest2_blueprint, url_prefix='/artquest2')
     # app.logger.info("[artquest2_blueprint] registed!")
 
-    from .artquest3 import artquest3 as artquest3_blueprint
-    app.register_blueprint(artquest3_blueprint, url_prefix='/artquest3')
-    app.logger.info("[artquest3_blueprint] registed!")
+    # from .artmuse import artmuse as artmuse_blueprint
+    # app.register_blueprint(artmuse_blueprint, url_prefix='/artmuse')
+    # app.logger.info("[artmuse_blueprint] registed!")
 
     # from .multilingual_qa import multilingual_qa as multilingual_qa_blueprint
     # app.register_blueprint(multilingual_qa_blueprint, url_prefix='/multilingual_qa')
     # app.logger.info("[multilingual_qa_blueprint] registed!")
 
-    # from .line_bot import line_bot as line_bot_blueprint
-    # app.register_blueprint(line_bot_blueprint, url_prefix='/line_bot')
-    # app.logger.info("[line_bot_blueprint] registed!")
+    from .line_bot import line_bot as line_bot_blueprint
+    app.register_blueprint(line_bot_blueprint, url_prefix='/line_bot')
+    app.logger.info("[line_bot_blueprint] registed!")
+
+    from .whatsapp_bot import whatsapp_bot as whatsapp_bot_blueprint
+    app.register_blueprint(whatsapp_bot_blueprint, url_prefix='/whatsapp_bot')
+    app.logger.info("[whatsapp_bot_blueprint] registed!")
 
     # from .cure import cure as cure_blueprint
     # app.register_blueprint(cure_blueprint, url_prefix='/cure')

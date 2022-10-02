@@ -3,29 +3,29 @@ from flask_socketio import emit
 from .. import socketio
 import json
 
-import app.artquest3.model as model
+import app.artmuse.model as model
 
-artquest3 = Blueprint('artquest3', __name__, template_folder='./templates', static_folder='./static')
+artmuse = Blueprint('artmuse', __name__, template_folder='./templates', static_folder='./static')
 
-@artquest3.route('/')
+@artmuse.route('/')
 def index():
-    return render_template('artquest3/index.html')
+    return render_template('artmuse/index.html')
 
-@socketio.on('get_openning', namespace='/artquest3')
+@socketio.on('get_openning', namespace='/artmuse')
 def get_openning(request):
     data = json.loads(request['data'])
 
     title = data['picture']["title"]
     author = data['picture']["author"]
 
-    openning_sentence = model.get_openning_sentence(title, author)
+    openning_sentences = model.get_openning_sentence(title, author)
 
-    emit('receive_message', {'status': "ok", 'message': openning_sentence[0]})
-    emit('receive_message', {'status': "ok", 'message': openning_sentence[1]})
+    emit('receive_message', {'status': "ok", 'message': openning_sentences[0]})
+    emit('receive_message', {'status': "ok", 'message': openning_sentences[1]})
 
 
-@socketio.on('artquest3_request', namespace='/artquest3')
-def artquest3_request(request):
+@socketio.on('artmuse_request', namespace='/artmuse')
+def artmuse_request(request):
     data = json.loads(request['data'])
 
     try:
@@ -36,8 +36,6 @@ def artquest3_request(request):
         seen = data["seen"]
         seen_questions = data["seen_questions"]
         vmessage = data["conversation_list"][-1]
-
-        print(data)
 
         responses = model.getResponse(title, author, psgf, subsf, seen, seen_questions, vmessage)
 

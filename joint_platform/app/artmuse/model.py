@@ -8,7 +8,7 @@ import os
 import sys
 import random
 import traceback
-import app.artquest3.model_utils as model_utils
+import app.artmuse.model_utils as model_utils
 
 seed_value = random.randrange(sys.maxsize)
 random.seed(seed_value)
@@ -82,7 +82,7 @@ def get_engaging_question(amessage, vmessage, azone):
     return model_utils.generate_engaging_question(inp_string)
 
 def get_openning_sentence(title, artist):
-    openings = model_utils.opening_cues
+    openings = list(model_utils.opening_cues)
     openings.append("Do you like paintings by " + artist + "?")
         
     amessage = f"This is '{title}', a painting by {artist}."
@@ -252,5 +252,5 @@ def getResponse(title, artist, psgf, subsf, seen, seen_questions, vmessage):
 if __name__=="__main__":
     title="Malayan Fruits"
     artist="Georgette Chen"
-    psgf="/home/nzsg_nlp_nus/Projects/nus-mu-uoa-nlp-demos/joint_platform/app/artquest3/static/data/sents/gallery/1962_malayan_fruits.txt"
-    subsf="/home/nzsg_nlp_nus/Projects/nus-mu-uoa-nlp-demos/joint_platform/app/artquest3/static/data/subsumed/gallery/1962_malayan_fruits.txt"
+    psgf="/home/nzsg_nlp_nus/Projects/nus-mu-uoa-nlp-demos/joint_platform/app/artmuse/static/data/sents/gallery/1962_malayan_fruits.txt"
+    subsf="/home/nzsg_nlp_nus/Projects/nus-mu-uoa-nlp-demos/joint_platform/app/artmuse/static/data/subsumed/gallery/1962_malayan_fruits.txt"

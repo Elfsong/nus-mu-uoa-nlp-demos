@@ -17,11 +17,11 @@ import numpy as np
 import time
 import torch
 
-questions_classcues_f="./app/artquest3/static/data/refq_qtype_engq.map.txt"
+questions_classcues_f="./app/artmuse/static/data/refq_qtype_engq.map.txt"
 sent_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 device = "cuda:2" if torch.cuda.is_available() else "cpu"
 eqg_tokenizer=AutoTokenizer.from_pretrained("t5-large",local_files_only=True)
-eqg_model = T5ForConditionalGeneration.from_pretrained("./app/artquest3/static/data/model/")
+eqg_model = T5ForConditionalGeneration.from_pretrained("./app/artmuse/static/data/model/")
 eqg_model.to(device)
 nlp = stanza.Pipeline(lang='en', processors='tokenize,pos,ner')
 
@@ -35,7 +35,7 @@ opening_cues = [
     "Do you like the painting?", 
     "What catches your eye about this painting?", 
     "How do you like this painting?", 
-    "What you like the most about this painting?"
+    "What do you like the most about this painting?"
 ]
 
 qae_messages = [
@@ -99,7 +99,7 @@ def generate_engaging_question(input_string, **generator_args):
     
     res = eqg_model.generate(input_ids, **generator_args)
     temp = eqg_tokenizer.batch_decode(res, skip_special_tokens=True)[0]
-    temp = temp.replace(":","").replace("ArtQuest","").replace("Viewer","").replace("[SEP]","").strip()
+    temp = temp.replace(":","").replace("ArtQuest","").replace("Viewer","").replace("Azone", "").replace("[SEP]","").strip()
     return temp
 
 def getWordsPOSNER(text):

@@ -6,21 +6,35 @@
     // Picture and Persona
     PP_data = [
         {
+            "picture_url": "static/data/picture_6.jpeg", 
+            "title": "Adoration of the Child (1483)", 
+            "author": "Filippino Lippi",
+            "psgf": "./app/artmuse/static/data/sents/iaai/23.txt",
+            "subsf": "./app/artmuse/static/data/validated_az/iaai/23.txt",
+        },
+        {
+            "picture_url": "static/data/picture_7.jpeg", 
+            "title": "Self-Portrait (c. 1915)", 
+            "author": "Max Liebermann",
+            "psgf": "./app/artmuse/static/data/sents/iaai/01.txt",
+            "subsf": "./app/artmuse/static/data/validated_az/iaai/01.txt",
+        },
+        {
             "picture_url": "static/data/picture_4.jpeg", 
             "title": "Boat and Shophouses", 
             "author": "Georgette Chen",
-            "psgf": "./app/artquest3/static/data/sents/gallery/boats_and_old_shophouses.txt",
-            "subsf": "./app/artquest3/static/data/validated_az/gallery/boats_and_old_shophouses.txt",
+            "psgf": "./app/artmuse/static/data/sents/gallery/boats_and_old_shophouses.txt",
+            "subsf": "./app/artmuse/static/data/validated_az/gallery/boats_and_old_shophouses.txt",
             "persona":"The representation of colourful shophouses and sampans along the river in Chen`s painting Boats and Shophouses, for example, offers an evocative and nostalgic view. Her oeuvre is inextricably rooted in the quintessential Singapore. "
         },
-        {
-            "picture_url": "static/data/picture_5.jpeg", 
-            "title": "Tropical Fruits", 
-            "author": "Georgette Chen",
-            "psgf": "./app/artquest3/static/data/sents/gallery/1962_malayan_fruits.txt",
-            "subsf": "./app/artquest3/static/data/validated_az/gallery/1962_malayan_fruits.txt",
-            "persona":"Still life paintings—such as Tropical Fruits—form the bulk of Chen`s artistic production. The meticulous set-ups of fruit, tableware and furniture not only captured the vivid colours and rich textures of Malaya, but also enabled to hone her artistic technique."
-        },
+        // {
+        //     "picture_url": "static/data/picture_5.jpeg", 
+        //     "title": "Tropical Fruits", 
+        //     "author": "Georgette Chen",
+        //     "psgf": "./app/artmuse/static/data/sents/gallery/1962_malayan_fruits.txt",
+        //     "subsf": "./app/artmuse/static/data/validated_az/gallery/1962_malayan_fruits.txt",
+        //     "persona":"Still life paintings—such as Tropical Fruits—form the bulk of Chen`s artistic production. The meticulous set-ups of fruit, tableware and furniture not only captured the vivid colours and rich textures of Malaya, but also enabled to hone her artistic technique."
+        // },
     ];
 
     // Message Class
@@ -70,11 +84,12 @@
     function cleanMessage() {
         $('.messages').html("");
         window.seen = [];
-        // showMessage('Hello This is ArtQuest demo.', "left", 0);
+        window.seen_questions = [];
     };
 
     function getOpenning() {
         let current_picture_index = $('.carousel-inner').find('.active').index();
+        console.log(current_picture_index);
         let data = { "picture": PP_data[current_picture_index] };
         window.socket.emit('get_openning', {data: JSON.stringify(data)});
     }
@@ -86,7 +101,7 @@
             console.log(PP_data[i]);
             indicators += `<button type="button" data-bs-target="#carousel-slides" data-bs-slide-to="${i}" aria-label="Slide ${i}" class="active" aria-current="true" ></button>`;
             items += `  <div class="carousel-item ${i==0?"active":""}">
-                            <img src="${PP_data[i].picture_url}" style="height: 500px; width: auto;" class="rounded mx-auto d-block shadow-lg" alt="...">
+                            <img src="${PP_data[i].picture_url}" style="height: 600px; width: auto;" class="rounded mx-auto d-block shadow-lg" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h4>${PP_data[i].title}</h4>
                                 <!-- <b style="font-size:15px">${PP_data[i].persona}</b> -->
@@ -119,13 +134,13 @@
         }
         console.log(data);
 
-        window.socket.emit('artquest3_request', {data: JSON.stringify(data)});
+        window.socket.emit('artmuse_request', {data: JSON.stringify(data)});
     }
 
     // Init function
     $(window).init(function() {
         // Socket IO Init
-        window.socket = io("/artquest3");
+        window.socket = io("/artmuse");
 
         window.seen = [];
         window.seen_questions = [];

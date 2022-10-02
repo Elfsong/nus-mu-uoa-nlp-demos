@@ -26,3 +26,5 @@ joint_platform/app/socratic_qg/static/index.js
 joint_platform/app/socratic_qg/static/sbert_model/*
 joint_platform/app/artquest2/static/data/*
 joint_platform/app/artquest3/static/data/*
+joint_platform/app/artmuse/static/data/*
+joint_platform/app/whatsapp_bot/static/*
