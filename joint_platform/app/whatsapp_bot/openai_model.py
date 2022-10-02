@@ -20,10 +20,7 @@ def openai_generate(content, temperature=0.0, max_tokens=128, top_p=1):
             top_p=top_p
         )
 
-        print("=" * 80)
-        # print(content)
-        print("original output:", responses)
-        print("=" * 80)
+        print("OPENAI => $$$$$")
 
         response = responses.choices[0]
 
@@ -48,5 +45,14 @@ def product_mentions(sentence):
         
         return [e.strip()[1:] for e in response.split("\n") if e.strip()]
     except Exception as e:
-        print(f"ERROR: {e}")
+        print(f"OPENAI {__name__} ERROR: {e}")
+        return []
+
+def ask_production_location_question(sentence, action):
+    try:
+        prompt = f"Given the context: {sentence} \nGenerate a question to ask the customer the {action}:"
+        response = openai_generate(prompt, max_tokens=64)
+        return response.strip()
+    except Exception as e:
+        print(f"OPENAI {__name__} ERROR: {e}")
         return []
