@@ -12,7 +12,7 @@ class SimilarityModel(object):
         self.model_name = model_name
         self.model = SentenceTransformer(self.model_name)
 
-    def embeddings(sentences: list) -> list:
+    def embeddings(self, sentences: list) -> list:
         embeddings = self.model.encode(sentences)
         return embeddings
 
