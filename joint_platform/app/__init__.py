@@ -45,9 +45,9 @@ def create_app(debug=False):
     # app.register_blueprint(artquest2_blueprint, url_prefix='/artquest2')
     # app.logger.info("[artquest2_blueprint] registed!")
 
-    # from .artmuse import artmuse as artmuse_blueprint
-    # app.register_blueprint(artmuse_blueprint, url_prefix='/artmuse')
-    # app.logger.info("[artmuse_blueprint] registed!")
+    from .artmuse import artmuse as artmuse_blueprint
+    app.register_blueprint(artmuse_blueprint, url_prefix='/artmuse')
+    app.logger.info("[artmuse_blueprint] registed!")
 
     # from .multilingual_qa import multilingual_qa as multilingual_qa_blueprint
     # app.register_blueprint(multilingual_qa_blueprint, url_prefix='/multilingual_qa')
