@@ -244,7 +244,7 @@ def pipeline(data):
         update_log(f"Initial Information Extraction: {genre_result}", mode="warn")
 
         # Manually context Update Request (without recording)
-        if message.startswith("Can you help me reading this document?"):
+        if message.startswith("Can you help me to read this document?"):
             current_session["status"] = "update_context"
             send_msg(from_id, to_id, "Absolutely! Please sharing the document with me.")
             update_log(f"Waiting for the data callback...", mode="error")
