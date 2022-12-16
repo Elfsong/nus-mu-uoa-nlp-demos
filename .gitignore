@@ -32,3 +32,4 @@ joint_platform/app/whatsapp_bot/static/models/hf_e2e_entity_linking_aidayago/mer
 joint_platform/app/whatsapp_bot/static/models/hf_e2e_entity_linking_aidayago/pytorch_model.bin
 joint_platform/app/whatsapp_bot/static/models/hf_e2e_entity_linking_aidayago/vocab.json
 joint_platform/app/whatsapp_bot/static/chromedriver
+joint_platform/start.sh
